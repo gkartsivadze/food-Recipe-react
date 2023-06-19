@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import FoodCard from './components/FoodCard'
-import './App.css'
 
 function App() {
   const [foodDetails, setDetails] = useState({name: "Giorgi"})
@@ -12,9 +11,9 @@ function App() {
           setDetails(data.meals[0])})
   }, [])
   return (
-    <>
+    <main>
       <FoodCard foodData={foodDetails} />
-    </>
+    </main>
   )
 }
 
