@@ -13,8 +13,6 @@
   --cream: #FFE6C7;
   --white: white;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
   color-scheme: light dark;
   color: var(--black);
   background-color: var(--cream);
@@ -50,9 +48,9 @@ nav .logo {
 
 .food_thumb_card {
   width: var(--card-width);
-  height: var(--card-height);
-  background: var(--orange);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 .food_thumb_card img {
   width: 100%;
@@ -61,18 +59,40 @@ nav .logo {
      object-fit: cover;
 }
 .food_thumb_card .info_div {
-  padding: 1rem;
+  background: var(--orange);
 }
-.food_thumb_card .info_div h2 {
+.food_thumb_card .info_div h3 {
   color: var(--black);
+  text-align: center;
 }
-.food_thumb_card .info_div ul {
+.food_thumb_card .info_div .showup_grid ul {
   color: var(--white);
   list-style: none;
+  height: 5rem;
+  overflow: hidden;
+  position: relative;
+  transition: height 0.3s;
+  background: var(--orange);
+  padding: 0.5rem;
+}
+.food_thumb_card .info_div .showup_grid ul li {
+  display: flex;
+  justify-content: space-between;
+}
+.food_thumb_card .info_div .showup_grid ul::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2rem;
+  background: linear-gradient(transparent, var(--orange));
+  transition: filter 0.5s;
 }
 
 main {
   padding-top: 5rem;
+  min-height: 91vh;
 }
 
 a {
@@ -81,4 +101,52 @@ a {
 }
 a:hover {
   filter: brightness(1.5);
+}
+
+.grid_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20rem);
+}
+
+.food_list_container {
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-evenly;
+}
+
+.showup_grid {
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: 1fr;
+}
+
+.open {
+  height: 100% !important;
+}
+.open:after {
+  filter: opacity(0);
+}
+
+.btn {
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.orange-transparent-btn {
+  width: 100%;
+  background-color: transparent;
+  color: var(--black);
+  border: 1px solid var(--black);
+  transition: color 0.4s, background-color 0.2s, border 0.2s;
+}
+.orange-transparent-btn:hover {
+  color: var(--white);
+  border: 1px solid var(--white);
+  background-color: var(--black);
+}
+
+footer {
+  background-color: var(--black);
+  color: var(--cream);
 }/*# sourceMappingURL=index.css.map */

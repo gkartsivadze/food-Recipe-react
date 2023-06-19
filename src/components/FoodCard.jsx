@@ -1,24 +1,53 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
-export default function FoodCard({ foodData }) {
-    let ingredientArray = [];
-    for (let i = 1; i <= 20; i++) {
-        if (foodData["strIngredient" + i] != "") {
-            ingredientArray.push(foodData["strIngredient" + i])
+export default function FoodCard() {
+    const [more, setMore] = useState(false);
+    const [ingredients, setIngredients] = useState([]);
+    const [openState, setOpenState] = useState(false);
+    const ingredientList = useRef(0);
+    const [foodDetails, setDetails] = useState({name: "Giorgi"})
+    
+    useEffect(() => {
+        fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+        .then(data => data.json())
+        .then(data => {
+          let details = data.meals[0];
+          setDetails(data.meals[0])
+          // get ingredients
+          for (let i = 1; i <= 20; i++) {
+              // Check ingredients existence
+              if (details["strIngredient" + i] != "") {
+                  setIngredients(prev => [
+                      ...prev,
+                      {
+                        id: i,
+                        ingredient: details["strIngredient" + i],
+                        amount: details["strMeasure" + i]
+                    }
+                ])
+            }
         }
-    }
+        })
+
+    }, [])
+
     return (
         <div className="food_thumb_card">
-            <img src={foodData.strMealThumb} alt="" />
+            <img src={foodDetails.strMealThumb} alt="" />
             <div className="info_div">
-                <h2>{foodData.strMeal}</h2>
-                {/* <p>{foodData.strInstructions}</p> */}
-                <h3>Ingredients</h3>
-                <ul>
-                    {ingredientArray.map(elem => {
-                        return <li>{elem}</li>
-                    })}
-                </ul>
+                <div className="showup_grid">
+                <h3>{foodDetails.strMeal}</h3>
+                    <ul className={openState && "open"} ref={ingredientList}>
+                        {ingredients.map(elem => {
+                            return <li key={elem.id}><p>{elem.ingredient}</p><p>{elem.amount}</p></li>
+                        })}
+                    </ul>
+                </div>
+                {ingredients.length > 3 && <button className="btn orange-transparent-btn" onClick={() => setOpenState(prev => !prev)}>
+                    <FontAwesomeIcon icon={openState ? faCaretUp : faCaretDown} />
+                </button>}
             </div>
         </div>
     )
