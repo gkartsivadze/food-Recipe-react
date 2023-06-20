@@ -1,3 +1,9 @@
-main {
-  padding-inline: 5rem;
+#welcome_section {
+  background-color: var(--orange);
+}
+#welcome_section h1 {
+  font-size: 5rem;
+  text-align: center;
+  color: var(--white);
+  padding-block: 1rem;
 }/*# sourceMappingURL=style.css.map */

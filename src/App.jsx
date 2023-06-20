@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react'
 import FoodCard from './components/FoodCard'
 
 function App() {
-  useEffect(() => {
-    
-  }, [])
+  
   return (
     <main>
+      <section id="welcome_section">
+        <h1>BON APPETITO</h1>
+      </section>
       <section className="food_list_container grid_container">
+      <FoodCard />
+      <FoodCard />
       <FoodCard />
       <FoodCard />
       <FoodCard />
