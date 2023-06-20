@@ -47,11 +47,24 @@ nav a {
   display: inline-block;
   padding: 1rem;
   transition: letter-spacing 0.5s, color 0.5s, background-color 0.5s;
+  position: relative;
 }
 nav a:hover {
   color: var(--light-green);
   letter-spacing: 0.1rem;
   background-color: var(--orange);
+}
+nav #favourite_counter {
+  display: grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  position: absolute;
+  font-size: 0.75rem;
+  background-color: var(--orange);
+  border-radius: 50%;
+  top: 0.25rem;
+  right: 0;
 }
 
 #root {
@@ -62,43 +75,110 @@ nav a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 90vh;
+}
+
+.card_list_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  justify-content: space-evenly;
 }
 
 .preview_card {
   background-color: var(--orange);
   width: 20rem;
+  height: -moz-max-content;
+  height: max-content;
   border-radius: 1rem;
-  overflow: hidden;
+  position: relative;
 }
-.preview_card img {
+.preview_card .open_full_link {
+  transition: filter 0.5s;
+  position: relative;
+  display: block;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.preview_card .open_full_link:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background: url(./assets/read-svgrepo-com.svg) no-repeat center;
+  background-size: 50%;
+  filter: opacity(0);
+  transition: filter 0.5s;
+}
+.preview_card .open_full_link:hover {
+  filter: brightness(0.8);
+}
+.preview_card .open_full_link:hover:after {
+  filter: opacity(1);
+}
+.preview_card .open_full_link img {
   max-width: 100%;
   height: 20rem;
   -o-object-fit: cover;
      object-fit: cover;
 }
+.preview_card h3 {
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border-bottom: 1px solid var(--dark-green);
+}
 .preview_card .food_info {
-  padding: 1rem;
+  padding-inline: 1rem;
+}
+.preview_card .food_info .grid_collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s;
+}
+.preview_card .food_info .grid_collapse.open {
+  grid-template-rows: 1fr;
+}
+.preview_card .food_info .grid_collapse.open ul:after {
+  filter: opacity(0);
 }
 .preview_card .food_info ul {
   list-style: none;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+.preview_card .food_info ul:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2rem;
+  background: linear-gradient(transparent, var(--orange));
+  transition: filter 0.5s;
 }
 .preview_card .food_info ul li {
   display: flex;
   justify-content: space-between;
 }
 .preview_card .food_buttons {
-  display: flex;
-  justify-content: stretch;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 0.25fr 1fr 0.25fr;
 }
 .preview_card .food_buttons button {
-  flex: 1 1 auto;
-  font-size: 2rem;
+  font-size: 1rem;
   border: none;
   cursor: pointer;
   transition: color 0.2s, background-color 0.2s;
+}
+.preview_card .food_buttons button.full_list:hover {
+  background-color: grey;
 }
 .preview_card .food_buttons button.love_btn:hover {
   color: var(--red);
@@ -117,4 +197,35 @@ nav a:hover {
 }
 .category_selector select {
   padding: 0.25rem 0.5rem;
+}
+
+#product_page .food_name {
+  text-align: center;
+  padding-block: 1rem;
+  font-size: 3rem;
+  background-color: var(--orange);
+}
+#product_page .top_section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 3rem;
+  padding-inline: 5rem;
+}
+#product_page .top_section img {
+  height: 30rem;
+  width: 30rem;
+  place-self: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#product_page .top_section ul li {
+  display: flex;
+  justify-content: space-between;
+}
+#product_page .top_section ul li:nth-of-type(odd) {
+  border-bottom: 1px solid var(--dark-green);
+}
+#product_page .top_section ul li:nth-of-type(even) {
+  border-bottom: 1px solid var(--orange);
 }/*# sourceMappingURL=index.css.map */

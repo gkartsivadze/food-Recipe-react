@@ -5,9 +5,9 @@ export default function Header() {
     return <nav>
         <h1 className="logo">Receptionera</h1>
         <div className="navigation">
-            <Link path="/">HOME</Link>
-            <Link path="/categories">CATEGORIES</Link>
-            <Link path="/favourites">FAVOURITES</Link>
+            <Link to="/">HOME</Link>
+            <Link to="/categories">CATEGORIES</Link>
+            <Link to="/favourites">FAVOURITES<span id="favourite_counter">{localStorage.length}</span></Link>
         </div>
     </nav>
 }
