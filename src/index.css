@@ -7,8 +7,8 @@
   --white: white;
   --red: #FF2400;
   color-scheme: light dark;
-  color: var(--dark-green);
-  background-color: var(--cream);
+  color: var(--white);
+  background-color: var(--white);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -42,6 +42,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding-inline: 3rem;
+  background-color: var(--light-green);
+  color: var(--white);
 }
 nav a {
   display: inline-block;
@@ -50,7 +52,6 @@ nav a {
   position: relative;
 }
 nav a:hover {
-  color: var(--light-green);
   letter-spacing: 0.1rem;
   background-color: var(--orange);
 }
@@ -71,18 +72,20 @@ nav #favourite_counter {
   min-height: 100vh;
 }
 
-#home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 90vh;
+#home .hero_text {
+  margin-block: 2rem;
+  font-size: 5rem;
+  text-align: center;
+  padding-block: 2rem;
+  background-color: var(--dark-green);
 }
 
 .card_list_container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, 23rem);
+  gap: 2rem;
   justify-content: space-evenly;
+  justify-items: center;
 }
 
 .preview_card {
@@ -201,6 +204,7 @@ nav #favourite_counter {
 
 #product_page .food_name {
   text-align: center;
+  margin-block: 1rem;
   padding-block: 1rem;
   font-size: 3rem;
   background-color: var(--orange);
@@ -211,6 +215,8 @@ nav #favourite_counter {
   align-items: center;
   margin-top: 3rem;
   padding-inline: 5rem;
+  color: var(--dark-green);
+  margin-block: 2rem;
 }
 #product_page .top_section img {
   height: 30rem;
@@ -228,4 +234,8 @@ nav #favourite_counter {
 }
 #product_page .top_section ul li:nth-of-type(even) {
   border-bottom: 1px solid var(--orange);
+}
+#product_page .food_instruction {
+  background-color: var(--dark-green);
+  margin-inline: 3rem;
 }/*# sourceMappingURL=index.css.map */

@@ -7,7 +7,6 @@ import ProductPage from './directions/ProductPage.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}>
@@ -15,6 +14,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='product-page' element={<ProductPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
-  </React.StrictMode>,
+    </BrowserRouter>,
 )

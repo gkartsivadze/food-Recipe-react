@@ -51,7 +51,7 @@ export default function ProductPage() {
       <section className='details_section'>
 
       </section>
-      <p>{foodData.strInstructions}</p>
+      <p className='food_instruction'>{foodData.strInstructions}</p>
     </main>
   );
 };
