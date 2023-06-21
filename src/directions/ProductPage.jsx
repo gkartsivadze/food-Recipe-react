@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 export default function ProductPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const name = queryParams.get("name");
   const id = queryParams.get("id");
   const [foodData, setFoodData] = useState({})
   const [ingredients, setIngredients] = useState([])

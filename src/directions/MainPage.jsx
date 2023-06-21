@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import PreviewCard from "../components/PreviewCard"
 
 export default function Main() {
