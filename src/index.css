@@ -8,7 +8,7 @@
   --red: #FF2400;
   color-scheme: light dark;
   color: var(--white);
-  background-color: var(--white);
+  background-color: var(--cream);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -43,15 +43,16 @@ nav {
   align-items: center;
   padding-inline: 3rem;
   background-color: var(--light-green);
-  color: var(--white);
+  color: var(--cream);
 }
 nav a {
   display: inline-block;
   padding: 1rem;
   transition: letter-spacing 0.5s, color 0.5s, background-color 0.5s;
   position: relative;
+  outline: none;
 }
-nav a:hover {
+nav a:hover, nav a:focus {
   letter-spacing: 0.1rem;
   background-color: var(--orange);
 }
@@ -72,7 +73,7 @@ nav #favourite_counter {
   min-height: 100vh;
 }
 
-#home .hero_text {
+.hero_text {
   margin-block: 2rem;
   font-size: 5rem;
   text-align: center;
@@ -90,7 +91,7 @@ nav #favourite_counter {
 
 .preview_card {
   background-color: var(--orange);
-  width: 20rem;
+  width: 25rem;
   height: -moz-max-content;
   height: max-content;
   border-radius: 1rem;
@@ -124,7 +125,6 @@ nav #favourite_counter {
 }
 .preview_card .open_full_link img {
   max-width: 100%;
-  height: 20rem;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -169,6 +169,9 @@ nav #favourite_counter {
 .preview_card .food_info ul li {
   display: flex;
   justify-content: space-between;
+}
+.preview_card .food_info ul li p:nth-of-type(odd) {
+  color: var(--dark-green);
 }
 .preview_card .food_buttons {
   display: grid;
@@ -235,7 +238,52 @@ nav #favourite_counter {
 #product_page .top_section ul li:nth-of-type(even) {
   border-bottom: 1px solid var(--orange);
 }
+#product_page .details_section {
+  display: flex;
+  color: var(--dark-green);
+  justify-content: space-between;
+  padding: 1rem;
+  font-size: 1.5rem;
+  border-top: 1px solid var(--orange);
+  border-bottom: 1px solid var(--orange);
+  margin-block: 1rem;
+  font-weight: bold;
+}
 #product_page .food_instruction {
   background-color: var(--dark-green);
   margin-inline: 3rem;
+  padding: 1rem;
+  padding-top: 0;
+}
+#product_page .food_instruction h1 {
+  text-align: center;
+  border-bottom: 1px solid var(--orange);
+  padding-block: 1rem;
+}
+#product_page .food_instruction p {
+  padding: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.category_card {
+  border-radius: 1rem;
+  text-align: center;
+  background: radial-gradient(#636b64, #263A29);
+  box-shadow: 0 0 1rem inset black;
+  transition: box-shadow 0.5s;
+  cursor: pointer;
+  outline: none;
+}
+.category_card img {
+  border-radius: 1rem 1rem 0 0;
+  transition: transform 0.2s;
+}
+.category_card:hover, .category_card:focus {
+  box-shadow: 0 0 1rem inset white;
+}
+.category_card:hover img, .category_card:focus img {
+  transform: scale(1.1);
 }/*# sourceMappingURL=index.css.map */

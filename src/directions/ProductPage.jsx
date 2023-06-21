@@ -10,9 +10,9 @@ export default function ProductPage() {
   const [ingredients, setIngredients] = useState([])
 
   useEffect(() => {
-      fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-        .then(data => data.json())
-        .then(data => setFoodData(data.meals[0]));
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+      .then(data => data.json())
+      .then(data => setFoodData(data.meals[0]));
   }, [])
   useEffect(() => {
     let arr = [];
@@ -31,13 +31,13 @@ export default function ProductPage() {
 
   return (
     <main id="product_page">
-          <h1 className='food_name'>{foodData.strMeal}</h1>
+      <h1 className='food_name'>{foodData.strMeal}</h1>
       <section className='top_section'>
         <img src={foodData.strMealThumb} alt={foodData.strMeal} />
         <div className='grid_container'>
           <h2>INGREDIENTS</h2>
           <ul>
-          {ingredients.map((elem) => {
+            {ingredients.map((elem) => {
               return (
                 <li key={elem.id}>
                   <p>{elem.name}</p>
@@ -49,9 +49,14 @@ export default function ProductPage() {
         </div>
       </section>
       <section className='details_section'>
-
+            <p>Category : {foodData.strCategory}</p>
+            <p>Area : {foodData.strArea}</p>
+            <p>Tags : {foodData.strTags}</p>
       </section>
-      <p className='food_instruction'>{foodData.strInstructions}</p>
+      <section className='food_instruction'>
+        <h1>INSTRUCTION</h1>
+        <p>{foodData.strInstructions}</p>
+      </section>
     </main>
   );
 };
