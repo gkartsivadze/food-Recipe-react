@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import PreviewCard from "../components/PreviewCard"
+import PreviewCard from "../components/PreviewCard";
 
 export default function Main() {
     const [data, setData] = useState({});

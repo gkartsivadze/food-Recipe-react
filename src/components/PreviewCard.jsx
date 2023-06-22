@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function PreviewCard({ productId , data_mode }) {
+export default function PreviewCard({ productId , data_mode , fullData }) {
   const [foodData, setFoodData] = useState({});
   const [ingredients, setIngredients] = useState([]);
   const navigate = useNavigate();
@@ -11,6 +11,9 @@ export default function PreviewCard({ productId , data_mode }) {
       fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${productId}`)
       .then((data) => data.json())
       .then((data) => setFoodData(data.meals[0]));
+    } else if(fullData) {
+      setFoodData(fullData);
+      console.log(fullData);
     } else {
       fetch("https://www.themealdb.com/api/json/v1/1/random.php")
         .then((data) => data.json())
