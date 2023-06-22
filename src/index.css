@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
 :root {
   --orange: #E86A33;
-  --dark-green: #76ac7e;
-  --light-green: #41644A;
+  --light-green: #6f7f72;
+  --green: #41644A;
   --cream: #F2E3DB;
   --white: white;
   --red: #FF2400;
@@ -43,7 +43,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding-inline: 3rem;
-  background-color: var(--light-green);
+  background-color: var(--green);
   color: var(--cream);
 }
 nav a {
@@ -80,19 +80,19 @@ nav #favourite_counter {
   font-size: 3rem;
   text-align: center;
   padding-block: 1rem;
-  background-color: var(--dark-green);
+  background-color: var(--light-green);
 }
 
 .card_list_container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 23rem);
+  grid-template-columns: repeat(auto-fill, 40rem);
   gap: 2rem;
   justify-content: space-evenly;
   justify-items: center;
 }
 
 .preview_card {
-  background-color: var(--dark-green);
+  background-color: var(--light-green);
   width: 50rem;
   height: 20rem;
   position: relative;
@@ -100,6 +100,28 @@ nav #favourite_counter {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 0 1rem var(--black);
+  transition: left 0.5s, transform 0.5s, filter 0.5s, background-color 0.5s, box-shadow 0.5s;
+}
+.preview_card:hover {
+  box-shadow: 0 0 0.5rem 0.01rem var(--white);
+}
+.preview_card .image_container {
+  cursor: pointer;
+}
+.preview_card .image_container:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 30rem;
+  background: url(./assets/read-svgrepo-com.svg) center no-repeat, rgba(255, 255, 255, 0.2);
+  background-size: 10rem;
+  transition: filter 0.5s;
+  filter: opacity(0);
+}
+.preview_card .image_container:hover:after {
+  filter: opacity(1);
 }
 .preview_card img {
   height: 20rem;
@@ -129,11 +151,15 @@ nav #favourite_counter {
   flex-direction: column;
   overflow: auto;
   position: relative;
-  padding-inline: 1rem;
 }
 .preview_card .food_info ul li {
   display: flex;
   justify-content: space-between;
+  padding: 0.25rem 1.5rem;
+  transition: background-color 0.5s, padding 0.5s;
+}
+.preview_card .food_info ul li:hover {
+  background-color: var(--orange);
 }
 .preview_card .food_info ul li p:nth-of-type(odd) {
   color: var(--cream);
@@ -148,7 +174,6 @@ nav #favourite_counter {
 #home .card_list_container .preview_card {
   position: absolute;
   transition-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
-  transition: left 0.5s, transform 0.5s, filter 0.5s, color 0.5s;
 }
 #home .card_list_container .preview_card[data-state=pastactive] {
   left: -100%;
@@ -206,7 +231,7 @@ nav #favourite_counter {
   grid-template-columns: repeat(3, 1fr);
   padding: 3rem;
   margin: 2rem;
-  background: var(--dark-green);
+  background: var(--light-green);
   gap: 3rem;
 }
 .category_selector .display-flex {
@@ -218,7 +243,7 @@ nav #favourite_counter {
 }
 
 .popup_text {
-  background-color: var(--light-green);
+  background-color: var(--green);
   padding: 1rem;
 }
 
@@ -235,7 +260,7 @@ nav #favourite_counter {
   align-items: center;
   margin-top: 3rem;
   padding-inline: 5rem;
-  color: var(--dark-green);
+  color: var(--light-green);
   margin-block: 2rem;
 }
 #product_page .top_section img {
@@ -250,14 +275,14 @@ nav #favourite_counter {
   justify-content: space-between;
 }
 #product_page .top_section ul li:nth-of-type(odd) {
-  border-bottom: 1px solid var(--dark-green);
+  border-bottom: 1px solid var(--light-green);
 }
 #product_page .top_section ul li:nth-of-type(even) {
   border-bottom: 1px solid var(--orange);
 }
 #product_page .details_section {
   display: flex;
-  color: var(--dark-green);
+  color: var(--light-green);
   justify-content: space-between;
   padding: 1rem 5rem;
   font-size: 1.5rem;
@@ -267,7 +292,7 @@ nav #favourite_counter {
   font-weight: bold;
 }
 #product_page .food_instruction {
-  background-color: var(--dark-green);
+  background-color: var(--light-green);
   margin-inline: 3rem;
   padding: 1rem;
   padding-top: 0;

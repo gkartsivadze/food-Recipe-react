@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 export default function PreviewCard({ productId , data_mode , fullData }) {
   const [foodData, setFoodData] = useState({});
@@ -45,8 +45,8 @@ export default function PreviewCard({ productId , data_mode , fullData }) {
   }
 
   return (
-    <div data-state={data_mode} className="preview_card">
-        <img src={foodData.strMealThumb} alt={foodData.strMeal} />
+    <div onClick={redirectToProduct} data-state={data_mode} className="preview_card">
+        <div className="image_container"><img src={foodData.strMealThumb} alt={foodData.strMeal} /></div>
       <div className="food_info">
         <h3 title={foodData.strMeal}>{foodData.strMeal}</h3>
           <ul>
