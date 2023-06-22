@@ -26,7 +26,6 @@ export default function ProductPage() {
     }
     setIngredients(arr);
   }, [foodData]);
-  // Use the retrieved data as needed
 
   return (
     <main id="product_page">
@@ -48,9 +47,9 @@ export default function ProductPage() {
         </div>
       </section>
       <section className='details_section'>
-            <p>Category : {foodData.strCategory}</p>
-            <p>Area : {foodData.strArea}</p>
-            <p>Tags : {foodData.strTags}</p>
+            <p>{foodData.strCategory ? `Category : ${foodData.strCategory}` : ''}</p>
+            <p>{foodData.strArea ? `Area : ${foodData.strArea}` : ''}</p>
+            <p>{foodData.strTags ? `Tags : ${foodData.strTags}` : ''}</p>
       </section>
       <section className='food_instruction'>
         <h1>INSTRUCTION</h1>

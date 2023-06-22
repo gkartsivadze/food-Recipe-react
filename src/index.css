@@ -194,15 +194,24 @@ nav #favourite_counter {
 }
 
 .category_selector {
-  position: absolute;
-  top: 5rem;
-  left: 5rem;
   display: grid;
-  grid-template-columns: 0.5fr 1fr;
-  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 3rem;
+  margin: 2rem;
+  background: var(--dark-green);
+  gap: 3rem;
+}
+.category_selector .display-flex {
+  gap: 0.5rem;
 }
 .category_selector select {
   padding: 0.25rem 0.5rem;
+  flex: 1 1 auto;
+}
+
+.popup_text {
+  background-color: var(--light-green);
+  padding: 1rem;
 }
 
 #product_page .food_name {
@@ -266,6 +275,10 @@ nav #favourite_counter {
 
 .text-center {
   text-align: center;
+}
+
+.display-flex {
+  display: flex;
 }
 
 .category_card {
