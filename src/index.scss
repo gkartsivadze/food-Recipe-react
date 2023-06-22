@@ -97,7 +97,7 @@ nav {
 }
 
 .preview_card {
-  background-color: var(--orange);
+  background-color: var(--dark-green);
   width: 25rem;
   height: max-content;
   border-radius: 1rem;
@@ -121,9 +121,9 @@ nav {
       transition: filter 0.5s;
     }
     &:hover {
-      filter: brightness(0.8);
+      filter: grayscale(0.5);
       &:after {
-        filter: opacity(1)
+        filter: opacity(1);
       }
       }
     img {
@@ -176,7 +176,7 @@ nav {
         display: flex;
         justify-content: space-between;
         p:nth-of-type(odd) {
-          color: var(--dark-green);
+          color: var(--cream);
         }
       }
     }
@@ -207,6 +207,10 @@ nav {
       }
     }
   }
+}
+
+.logo {
+  font-size: 3rem;
 }
 
 .category_selector {
@@ -269,7 +273,7 @@ nav {
     display: flex;
     color: var(--dark-green);
     justify-content: space-between;
-    padding: 1rem;
+    padding: 1rem 5rem;
     font-size: 1.5rem;
     border-top: 1px solid var(--orange);
     border-bottom: 1px solid var(--orange);

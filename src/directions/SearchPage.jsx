@@ -63,7 +63,7 @@ export default function SearchPage() {
     function synchronizeData(event) {
         setFilter(prev => ({
             ...prev,
-            [event.target.name]: event.target.value == "Any" ? "" : event.target.value
+            [event.target.name]: event.target.value.startsWith == "Choose" ? "" : event.target.value
         }))
     }
     useEffect(() => {
@@ -79,7 +79,7 @@ export default function SearchPage() {
             <div className='display-flex'>
                 <label>Category: </label>
                 <select value={filter.category} ref={categoryElem} onChange={synchronizeData} name="category">
-                    <option>Any</option>
+                    <option>Choose Category</option>
                     {
                         categories.map((elem, ind) => {
                             return <option key={ind}>{elem}</option>
@@ -90,7 +90,7 @@ export default function SearchPage() {
             <div className='display-flex'>
                 <label>Country: </label>
                 <select onChange={synchronizeData} name="country">
-                    <option>Any</option>
+                    <option>Choose Area</option>
                     {
                         areas.map((elem, ind) => {
                             return <option key={ind}>{elem}</option>
@@ -101,7 +101,7 @@ export default function SearchPage() {
             <div className='display-flex'>
                 <label>Ingredient: </label>
                 <select onChange={synchronizeData} name="ingredient">
-                    <option>Any</option>
+                    <option>Choose Ingredient</option>
                     {
                         ingredients.map((elem, ind) => {
                             return <option key={ind}>{elem}</option>

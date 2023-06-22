@@ -90,7 +90,7 @@ nav #favourite_counter {
 }
 
 .preview_card {
-  background-color: var(--orange);
+  background-color: var(--dark-green);
   width: 25rem;
   height: -moz-max-content;
   height: max-content;
@@ -118,7 +118,7 @@ nav #favourite_counter {
   transition: filter 0.5s;
 }
 .preview_card .open_full_link:hover {
-  filter: brightness(0.8);
+  filter: grayscale(0.5);
 }
 .preview_card .open_full_link:hover:after {
   filter: opacity(1);
@@ -171,7 +171,7 @@ nav #favourite_counter {
   justify-content: space-between;
 }
 .preview_card .food_info ul li p:nth-of-type(odd) {
-  color: var(--dark-green);
+  color: var(--cream);
 }
 .preview_card .food_buttons {
   display: grid;
@@ -191,6 +191,10 @@ nav #favourite_counter {
 }
 .preview_card .food_buttons button.delete_btn:hover {
   background-color: var(--red);
+}
+
+.logo {
+  font-size: 3rem;
 }
 
 .category_selector {
@@ -251,7 +255,7 @@ nav #favourite_counter {
   display: flex;
   color: var(--dark-green);
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1rem 5rem;
   font-size: 1.5rem;
   border-top: 1px solid var(--orange);
   border-bottom: 1px solid var(--orange);
