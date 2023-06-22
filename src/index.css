@@ -1,14 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
 :root {
   --orange: #E86A33;
-  --dark-green: #263A29;
+  --dark-green: #76ac7e;
   --light-green: #41644A;
   --cream: #F2E3DB;
   --white: white;
   --red: #FF2400;
+  --black: rgb(56, 52, 52);
   color-scheme: light dark;
   color: var(--white);
-  background-color: var(--cream);
+  background-color: var(--black);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -52,7 +53,8 @@ nav a {
   position: relative;
   outline: none;
 }
-nav a:hover, nav a:focus {
+nav a:hover,
+nav a:focus {
   letter-spacing: 0.1rem;
   background-color: var(--orange);
 }
@@ -75,9 +77,9 @@ nav #favourite_counter {
 
 .hero_text {
   margin-block: 2rem;
-  font-size: 5rem;
+  font-size: 3rem;
   text-align: center;
-  padding-block: 2rem;
+  padding-block: 1rem;
   background-color: var(--dark-green);
 }
 
@@ -91,80 +93,43 @@ nav #favourite_counter {
 
 .preview_card {
   background-color: var(--dark-green);
-  width: 25rem;
-  height: -moz-max-content;
-  height: max-content;
+  width: 50rem;
+  height: 20rem;
+  position: relative;
+  display: flex;
   border-radius: 1rem;
-  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 1rem var(--black);
 }
-.preview_card .open_full_link {
-  transition: filter 0.5s;
-  position: relative;
-  display: block;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-.preview_card .open_full_link:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 100%;
-  background: url(./assets/read-svgrepo-com.svg) no-repeat center;
-  background-size: 50%;
-  filter: opacity(0);
-  transition: filter 0.5s;
-}
-.preview_card .open_full_link:hover {
-  filter: grayscale(0.5);
-}
-.preview_card .open_full_link:hover:after {
-  filter: opacity(1);
-}
-.preview_card .open_full_link img {
-  max-width: 100%;
+.preview_card img {
+  height: 20rem;
+  width: 20rem;
+  aspect-ratio: 1;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.preview_card h3 {
-  text-align: center;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  border-bottom: 1px solid var(--dark-green);
-}
 .preview_card .food_info {
-  padding-inline: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 auto;
 }
-.preview_card .food_info .grid_collapse {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.5s;
+.preview_card .food_info h3 {
+  max-height: 4rem;
+  overflow: hidden;
+  padding: 0.5rem 1rem;
 }
-.preview_card .food_info .grid_collapse.open {
-  grid-template-rows: 1fr;
-}
-.preview_card .food_info .grid_collapse.open ul:after {
-  filter: opacity(0);
+.preview_card .food_info ::-webkit-scrollbar {
+  -webkit-appearance: none;
+          appearance: none;
 }
 .preview_card .food_info ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
-}
-.preview_card .food_info ul:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2rem;
-  background: linear-gradient(transparent, var(--orange));
-  transition: filter 0.5s;
+  padding-inline: 1rem;
 }
 .preview_card .food_info ul li {
   display: flex;
@@ -173,23 +138,62 @@ nav #favourite_counter {
 .preview_card .food_info ul li p:nth-of-type(odd) {
   color: var(--cream);
 }
-.preview_card .food_buttons {
-  display: grid;
-  grid-template-columns: 0.25fr 1fr 0.25fr;
+
+#home .card_list_container {
+  display: block;
+  height: 30rem;
+  position: relative;
+  overflow: hidden;
 }
-.preview_card .food_buttons button {
-  font-size: 1rem;
-  border: none;
+#home .card_list_container .preview_card {
+  position: absolute;
+  transition-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+  transition: left 0.5s, transform 0.5s, filter 0.5s, color 0.5s;
+}
+#home .card_list_container .preview_card[data-state=pastactive] {
+  left: -100%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#home .card_list_container .preview_card[data-state=delete] {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: var(--red);
+  filter: blur(2rem);
+}
+#home .card_list_container .preview_card[data-state=active] {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#home .card_list_container .preview_card[data-state=inactive] {
+  left: 100%;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+#home .food_buttons {
+  display: flex;
+  justify-content: center;
+  padding-block: 2rem;
+  gap: 3rem;
+}
+#home .food_buttons button {
   cursor: pointer;
   transition: color 0.2s, background-color 0.2s;
+  font-size: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
 }
-.preview_card .food_buttons button.full_list:hover {
+#home .food_buttons button.full_list:hover {
   background-color: grey;
 }
-.preview_card .food_buttons button.love_btn:hover {
+#home .food_buttons button.love_btn:hover {
   color: var(--red);
 }
-.preview_card .food_buttons button.delete_btn:hover {
+#home .food_buttons button.delete_btn:hover {
   background-color: var(--red);
 }
 

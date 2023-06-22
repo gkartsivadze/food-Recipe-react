@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-export default function PreviewCard({ productId }) {
+export default function PreviewCard({ productId , data_mode }) {
   const [foodData, setFoodData] = useState({});
   const [ingredients, setIngredients] = useState([]);
-  const [more, setMore] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,16 +32,6 @@ export default function PreviewCard({ productId }) {
     setIngredients(arr);
   }, [foodData]);
 
-  function handleDelete() {
-    fetch("https://www.themealdb.com/api/json/v1/1/random.php")
-      .then((data) => data.json())
-      .then((data) => setFoodData(data.meals[0]));
-  }
-
-  function handleLove() {
-    // Your implementation for handling love button click
-  }
-
   function redirectToProduct() {
     const queryParams = {
       id: foodData.idMeal,
@@ -56,13 +42,10 @@ export default function PreviewCard({ productId }) {
   }
 
   return (
-    <div className="preview_card">
-      <button className="open_full_link" onClick={redirectToProduct}>
+    <div data-state={data_mode} className="preview_card">
         <img src={foodData.strMealThumb} alt={foodData.strMeal} />
-      </button>
       <div className="food_info">
         <h3 title={foodData.strMeal}>{foodData.strMeal}</h3>
-        <div className={`grid_collapse ${more ? "open" : ""}`}>
           <ul>
             {ingredients.map((elem) => {
               return (
@@ -73,18 +56,6 @@ export default function PreviewCard({ productId }) {
               );
             })}
           </ul>
-        </div>
-      </div>
-      <div className="food_buttons">
-        <button className="delete_btn" onClick={handleDelete}>
-          <FontAwesomeIcon icon={faXmark} />
-        </button>
-        <button className="full_list" onClick={() => setMore((prev) => !prev)}>
-          Receipt
-        </button>
-        <button className="love_btn" onClick={handleLove}>
-          <FontAwesomeIcon icon={faHeart} />
-        </button>
       </div>
     </div>
   );
