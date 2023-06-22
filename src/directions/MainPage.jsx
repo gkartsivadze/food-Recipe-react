@@ -5,14 +5,25 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import PreviewCard from "../components/PreviewCard";
 
 export default function Main() {
-    const [data, setData] = useState({});
-    const [elements, setElements] = useState(["active","inactive"])
+    const [elements, setElements] = useState([
+        {
+            state: "active",
+            id: 0
+        },
+        {
+            state: "inactive",
+            id: 0
+        }])
     function handleDelete() {
         document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "delete");
         document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
-        fetch("https://www.themealdb.com/api/json/v1/1/random.php")
-        .then((data) => data.json())
-        .then((data) => setData(data.meals[0]));
+        setElements(prev => [
+            ...prev,
+            {
+                state: "inactive",
+                id: 0
+            }
+        ])
         setTimeout(() => {
             document.querySelector(".preview_card[data-state='delete']").remove();
         }, 500)
@@ -25,7 +36,7 @@ export default function Main() {
         <section className="card_list_container">
             {
                 elements.map((elem,ind) => {
-                    return <PreviewCard key={ind} data_mode={elem} />
+                    return <PreviewCard key={ind} data_mode={elem.state} />
                 })
             }
         </section>
