@@ -6,7 +6,7 @@ import PreviewCard from "../components/PreviewCard"
 
 export default function Main() {
     const [data, setData] = useState({});
-    const [elements, setElements] = useState(["active"="","inactive"=""])
+    const [elements, setElements] = useState(["active","inactive"])
     function handleDelete() {
         document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "delete");
         document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
