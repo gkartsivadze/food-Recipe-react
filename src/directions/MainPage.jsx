@@ -6,6 +6,7 @@ import PreviewCard from "../components/PreviewCard";
 
 export default function Main() {
     const [elements, setElements] = useState(["active","inactive"])
+    const [loved, setLoved] = useState([]);
     function handleDelete() {
         document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "delete");
         document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
@@ -20,6 +21,11 @@ export default function Main() {
     function handleLove() {
         document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "loved");
         document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
+        setLoved(prev => [
+            ...prev,
+            document.querySelector(".preview_card[data-state='loved']").getAttribute("data-food-id")
+        ])
+
         setElements(prev => [
             ...prev,
             "inactive"
@@ -27,7 +33,6 @@ export default function Main() {
         setTimeout(() => {
             document.querySelector(".preview_card[data-state='loved']").remove();
         }, 500)
-
     }
     return <main id="home">
         <h1 className="hero_text">BON APPETITO</h1>
