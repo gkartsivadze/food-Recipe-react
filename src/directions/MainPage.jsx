@@ -7,6 +7,12 @@ import PreviewCard from "../components/PreviewCard";
 export default function Main() {
     const [elements, setElements] = useState(["active","inactive"])
     const [loved, setLoved] = useState([]);
+    useEffect(() => {
+        let data = JSON.parse(localStorage.getItem('loved'));
+        if(data !== null) {
+            setLoved(data)
+        }
+    } , [])
     function handleDelete() {
         document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "delete");
         document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
@@ -21,11 +27,12 @@ export default function Main() {
     function handleLove() {
         document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "loved");
         document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
-        setLoved(prev => [
-            ...prev,
-            document.querySelector(".preview_card[data-state='loved']").getAttribute("data-food-id")
-        ])
-
+        let newItem = document.querySelector(".preview_card[data-state='loved']").getAttribute("data-food-id");
+        let newLoved = [
+            ...loved, newItem
+        ]
+        setLoved(newLoved)
+        localStorage.setItem('loved', JSON.stringify(newLoved));
         setElements(prev => [
             ...prev,
             "inactive"
