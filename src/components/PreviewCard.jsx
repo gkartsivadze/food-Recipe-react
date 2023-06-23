@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { redirect, useNavigate } from "react-router-dom";
 
-export default function PreviewCard({ productId , data_mode , fullData }) {
+export default function PreviewCard({ productId, data_mode, fullData }) {
   const [foodData, setFoodData] = useState({});
   const [ingredients, setIngredients] = useState([]);
+  const elementRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (productId) {
       fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${productId}`)
-      .then((data) => data.json())
-      .then((data) => setFoodData(data.meals[0]));
-    } else if(fullData) {
+        .then((data) => data.json())
+        .then((data) => setFoodData(data.meals[0]));
+    } else if (fullData) {
       setFoodData(fullData);
       console.log(fullData);
     } else {
@@ -19,6 +20,7 @@ export default function PreviewCard({ productId , data_mode , fullData }) {
         .then((data) => data.json())
         .then((data) => setFoodData(data.meals[0]));
     }
+    
   }, []);
 
   useEffect(() => {
@@ -34,6 +36,14 @@ export default function PreviewCard({ productId , data_mode , fullData }) {
     }
     setIngredients(arr);
   }, [foodData]);
+  useEffect(() => {
+    let element = elementRef.current;
+    const hasScrollbar = element.scrollHeight > element.clientHeight;
+    if (hasScrollbar) {
+      // Check for scrollbar
+      console.log('Scrollbar exists:', hasScrollbar);
+    }
+  },[ingredients])
 
   function redirectToProduct() {
     const queryParams = {
@@ -43,22 +53,21 @@ export default function PreviewCard({ productId , data_mode , fullData }) {
     const searchParams = new URLSearchParams(queryParams).toString();
     navigate(`/product-page?${searchParams}`);
   }
-
   return (
-    <div onClick={redirectToProduct} data-state={data_mode} className="preview_card">
-        <div className="image_container"><img src={foodData.strMealThumb} alt={foodData.strMeal} /></div>
+    <div data-state={data_mode} className="preview_card">
+      <div className="image_container" onClick={redirectToProduct} ><img src={foodData.strMealThumb} alt={foodData.strMeal} /></div>
       <div className="food_info">
         <h3 title={foodData.strMeal}>{foodData.strMeal}</h3>
-          <ul>
-            {ingredients.map((elem) => {
-              return (
-                <li key={elem.id}>
-                  <p>{elem.name}</p>
-                  <p>{elem.amount}</p>
-                </li>
-              );
-            })}
-          </ul>
+        <ul ref={elementRef}>
+          {ingredients.map((elem) => {
+            return (
+              <li key={elem.id}>
+                <p>{elem.name}</p>
+                <p>{elem.amount}</p>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

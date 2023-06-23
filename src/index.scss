@@ -4,6 +4,7 @@
   --orange: #E86A33;
   --light-green: #6f7f72;
   --green: #41644A;
+  --very-green: rgb(0, 255, 0);
   --cream: #F2E3DB;
   --white: white;
   --red: #FF2400;
@@ -140,14 +141,23 @@ nav {
     justify-content: space-between;
     flex: 1 1 auto;
     h3 {
-      max-height: 4rem;
+      max-height: 4.25rem;
       overflow: hidden;
       padding: 0.5rem 1rem;
     }
     ::-webkit-scrollbar {
-      appearance: none;
+      background-color: transparent;
+      width: 1rem;
+      // appearance: none;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color:#E86A33;
+      box-shadow: inset 0 0 0.5rem var(--black);
+      border-radius: 2rem;
     }
     ul {
+      height: 100%;
+      box-shadow: inset 0 0 1rem var(--black);
       list-style: none;
       display: flex;
       flex-direction: column;
@@ -184,6 +194,13 @@ nav {
       left: -100%;
       top: 50%;
       transform: translate(-50%, -50%);
+    }
+    .preview_card[data-state="loved"] {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background-color: var(--very-green);
+      filter: blur(2rem);
     }
     .preview_card[data-state="delete"] {
       left: 50%;

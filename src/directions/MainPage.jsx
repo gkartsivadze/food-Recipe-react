@@ -5,38 +5,36 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import PreviewCard from "../components/PreviewCard";
 
 export default function Main() {
-    const [elements, setElements] = useState([
-        {
-            state: "active",
-            id: 0
-        },
-        {
-            state: "inactive",
-            id: 0
-        }])
+    const [elements, setElements] = useState(["active","inactive"])
     function handleDelete() {
         document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "delete");
         document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
         setElements(prev => [
             ...prev,
-            {
-                state: "inactive",
-                id: 0
-            }
+            "inactive"
         ])
         setTimeout(() => {
             document.querySelector(".preview_card[data-state='delete']").remove();
         }, 500)
     }
     function handleLove() {
-        // Your implementation for handling love button click
+        document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "loved");
+        document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
+        setElements(prev => [
+            ...prev,
+            "inactive"
+        ])
+        setTimeout(() => {
+            document.querySelector(".preview_card[data-state='loved']").remove();
+        }, 500)
+
     }
     return <main id="home">
         <h1 className="hero_text">BON APPETITO</h1>
         <section className="card_list_container">
             {
                 elements.map((elem,ind) => {
-                    return <PreviewCard key={ind} data_mode={elem.state} />
+                    return <PreviewCard key={ind} data_mode={elem} />
                 })
             }
         </section>
