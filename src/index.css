@@ -253,6 +253,10 @@ nav #favourite_counter {
   padding-block: 2rem;
 }
 
+#categories_page .card_list_container {
+  grid-template-columns: repeat(auto-fill, 20rem);
+}
+
 .logo {
   font-size: 3rem;
 }
@@ -275,7 +279,8 @@ nav #favourite_counter {
 
 .popup_text {
   background-color: var(--green);
-  padding: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
 }
 
 #product_page .food_name {

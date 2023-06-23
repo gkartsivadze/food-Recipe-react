@@ -47,8 +47,10 @@ function PreviewCard({ productId, data_mode, fullData, deleteState, variable, up
     navigate(`/product-page?${searchParams}`);
   }
   function unFavouriteMe() {
+    console.log(variable);
     updateVariable(variable.filter(x => x !== productId));
   }
+  console.log(variable);
   return (
     <div data-state={data_mode} className="preview_card" data-food-id={foodData.idMeal}>
       <div className="image_container" onClick={redirectToProduct} ><img src={foodData.strMealThumb} alt={foodData.strMeal} /></div>

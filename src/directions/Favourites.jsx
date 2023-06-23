@@ -15,10 +15,11 @@ function Favourite({ variable, updateVariable }) {
     return (
         <main id="favourites">
             <section className="card_list_container">
-                {variable.length > 0 ? variable.map((elem, ind) => {
+                {variable.length > 0 && variable.map((elem, ind) => {
                     return <PreviewCard key={ind} productId={elem} deleteState={true} unFavourite={unFavouriteHandle} />
-                }) : ("Nothing Found")}
+                })}
             </section>
+            { variable.length > 0 || (<h1 className="popup_text text-center">Nothing Found</h1>)}
         </main>
     )
 }
