@@ -7,6 +7,7 @@ import ProductPage from './directions/ProductPage.jsx'
 import './index.css'
 import Categories from './directions/Categories.jsx'
 import SearchPage from './directions/SearchPage.jsx'
+import Favourites from './directions/Favourites.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='product-page' element={<ProductPage />} />
           <Route path='categories' element={<Categories />} />
           <Route path='search-page' element={<SearchPage />} />
+          <Route path='favourites' element={<Favourites />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>,

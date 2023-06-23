@@ -234,7 +234,6 @@ nav {
       height: 3rem;
       border-radius: 50%;
       border: none;
-      // background-color: transparent;
       &.full_list {
         &:hover {
           background-color: grey;
@@ -249,6 +248,26 @@ nav {
         background-color: var(--red);
       }
     }
+  }
+}
+
+.delete_btn_container {
+  button {
+    float: right;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    &:hover {
+      background-color: var(--red);
+    }
+  }
+}
+
+#favourites {
+  .card_list_container {
+    padding-block: 2rem;
   }
 }
 

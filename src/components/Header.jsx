@@ -1,13 +1,20 @@
 import React from "react"
 import { Link } from "react-router-dom";
+import { connect } from "react-redux"
 
-export default function Header() {
+function Header({ variable }) {
     return <nav>
-        <Link to='/'><h1 className="logo">Receptionera</h1></Link>
+        <h1 className="logo">Receptionera</h1>
         <div className="navigation">
             <Link to="/">HOME</Link>
             <Link to="/categories">CATEGORIES</Link>
-            <Link to="/favourites">FAVOURITES<span id="favourite_counter">{localStorage.length}</span></Link>
+            <Link to="/favourites">FAVOURITES<span id="favourite_counter">{variable.length}</span></Link>
         </div>
     </nav>
 }
+
+const mapStateToProps = (state) => ({
+    variable: state.variable
+})
+
+export default connect(mapStateToProps)(Header);

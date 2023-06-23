@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import PreviewCard from "../components/PreviewCard";
+import { connect } from "react-redux";
 
-export default function Main() {
+function Main({ variable, updateVariable }) {
     const [elements, setElements] = useState(["active","inactive"])
     const [loved, setLoved] = useState([]);
     useEffect(() => {
@@ -41,6 +42,7 @@ export default function Main() {
             document.querySelector(".preview_card[data-state='loved']").remove();
         }, 500)
     }
+    updateVariable(loved)
     return <main id="home">
         <h1 className="hero_text">BON APPETITO</h1>
         <section className="card_list_container">
@@ -60,3 +62,13 @@ export default function Main() {
         </section>
     </main>
 }
+
+const mapStateToProps = (state) => ({
+    variable: state.variable
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    updateVariable: (newVariable) => dispatch({ type: 'SYNCHRONIZE', payload: newVariable })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

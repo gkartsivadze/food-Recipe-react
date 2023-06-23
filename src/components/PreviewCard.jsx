@@ -1,7 +1,10 @@
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux"
 
-export default function PreviewCard({ productId, data_mode, fullData, getID }) {
+function PreviewCard({ productId, data_mode, fullData, deleteState, variable, updateVariable }) {
   const [foodData, setFoodData] = useState({});
   const [ingredients, setIngredients] = useState([]);
   const elementRef = useRef(null);
@@ -43,6 +46,10 @@ export default function PreviewCard({ productId, data_mode, fullData, getID }) {
     const searchParams = new URLSearchParams(queryParams).toString();
     navigate(`/product-page?${searchParams}`);
   }
+  function unFavouriteMe() {
+    console.log(variable);
+    updateVariable(variable.filter(x => x != productId));
+  }
   return (
     <div data-state={data_mode} className="preview_card" data-food-id={foodData.idMeal}>
       <div className="image_container" onClick={redirectToProduct} ><img src={foodData.strMealThumb} alt={foodData.strMeal} /></div>
@@ -58,7 +65,22 @@ export default function PreviewCard({ productId, data_mode, fullData, getID }) {
             );
           })}
         </ul>
+        {
+          deleteState && <div className="delete_btn_container">
+            <button onClick={unFavouriteMe}><FontAwesomeIcon icon={faTrashCan} /></button>
+          </div>
+        }
       </div>
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  variable: state.variable
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  updateVariable: (newVariable) => dispatch({ type: 'SYNCHRONIZE', payload: newVariable })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PreviewCard);

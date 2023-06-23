@@ -237,6 +237,22 @@ nav #favourite_counter {
   background-color: var(--red);
 }
 
+.delete_btn_container button {
+  float: right;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+.delete_btn_container button:hover {
+  background-color: var(--red);
+}
+
+#favourites .card_list_container {
+  padding-block: 2rem;
+}
+
 .logo {
   font-size: 3rem;
 }
