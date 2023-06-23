@@ -15,7 +15,7 @@ function Favourite({ variable, updateVariable }) {
     return (
         <main id="favourites">
             <section className="card_list_container">
-                {variable.length > 0 && variable.map((elem, ind) => {
+                {variable.length > 0 && variable.reverse().map((elem, ind) => {
                     return <PreviewCard key={ind} productId={elem} deleteState={true} unFavourite={unFavouriteHandle} />
                 })}
             </section>

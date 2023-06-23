@@ -8,6 +8,7 @@ function PreviewCard({ productId, data_mode, fullData, deleteState, variable, up
   const [foodData, setFoodData] = useState({});
   const [ingredients, setIngredients] = useState([]);
   const elementRef = useRef(null);
+  const containerRef = useRef(null);
   const navigate = useNavigate();
   useEffect(() => {
     if (productId) {
@@ -46,13 +47,14 @@ function PreviewCard({ productId, data_mode, fullData, deleteState, variable, up
     const searchParams = new URLSearchParams(queryParams).toString();
     navigate(`/product-page?${searchParams}`);
   }
-  function unFavouriteMe() {
-    console.log(variable);
-    updateVariable(variable.filter(x => x !== productId));
+  function unFavouriteMe(event) {
+    let newVal = localStorage.getItem("loved").split(",").filter(x => x != productId);
+    // localStorage.setItem("loved", newVal)
+    updateVariable(newVal)
+    // containerRef.current.remove();
   }
-  console.log(variable);
   return (
-    <div data-state={data_mode} className="preview_card" data-food-id={foodData.idMeal}>
+    <div ref={containerRef} data-state={data_mode} className="preview_card" data-food-id={foodData.idMeal}>
       <div className="image_container" onClick={redirectToProduct} ><img src={foodData.strMealThumb} alt={foodData.strMeal} /></div>
       <div className="food_info">
         <h3 title={foodData.strMeal}>{foodData.strMeal}</h3>
