@@ -8,7 +8,9 @@ function Header({ variable }) {
         <div className="navigation">
             <Link to="/">HOME</Link>
             <Link to="/categories">CATEGORIES</Link>
-            <Link to="/favourites">FAVOURITES<span id="favourite_counter">{variable.length}</span></Link>
+            <Link to="/favourites">FAVOURITES<span id="favourite_counter">
+                {typeof(variable) == "object" ? variable.length : 0}
+                </span></Link>
         </div>
     </nav>
 }

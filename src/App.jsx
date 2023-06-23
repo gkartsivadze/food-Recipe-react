@@ -1,18 +1,37 @@
+import React, {useEffect} from 'react'
 import './App.css'
 import { Outlet } from 'react-router'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import { Provider } from 'react-redux'
-import store from './store'
+import { connect } from 'react-redux'
 
-function App() {
+function App({variable, updateVariable}) {
+  useEffect(() => {
+    let data = localStorage.getItem('loved');
+    console.log(data);
+    if(data !== "" && data !== null) {
+     data = data.split(",");
+      updateVariable(data)
+    }
+  } , [])
+  if(typeof(variable) == "object") {
+    localStorage.setItem("loved", variable)
+  }
   return (
-    <Provider store={store} >
-    <Header />
-      <Outlet />
-    <Footer />
-    </Provider>
+    <>
+      <Header />
+      <Outlet hele="hi" />
+      <Footer />
+    </>
   )
 }
 
-export default App
+const mapStateToProps = (state) => ({
+  variable: state.variable
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  updateVariable: (newVariable) => dispatch({ type: 'SYNCHRONIZE', payload: newVariable })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

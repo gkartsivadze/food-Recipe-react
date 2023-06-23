@@ -3,19 +3,21 @@ import { connect } from "react-redux"
 import PreviewCard from "../components/PreviewCard";
 
 function Favourite({ variable, updateVariable }) {
-    const [loved, setLoved] = useState([]);
     useEffect(() => {
-        let data = JSON.parse(localStorage.getItem('loved'));
-        if (data !== null) {
-            setLoved(data)
+        if(variable === 0 && localStorage.getItem("loved") != "") {
+            let newData = localStorage.getItem('loved');
+            updateVariable(newData.split(","))
         }
-    }, [])
+    },[variable])
+    function unFavouriteHandle(id) {
+        
+    }
     return (
         <main id="favourites">
             <section className="card_list_container">
-                {loved.map((elem, ind) => {
-                    return <PreviewCard key={ind} productId={elem} />
-                })}
+                {variable.length > 0 ? variable.map((elem, ind) => {
+                    return <PreviewCard key={ind} productId={elem} deleteState={true} unFavourite={unFavouriteHandle} />
+                }) : ("Nothing Found")}
             </section>
         </main>
     )

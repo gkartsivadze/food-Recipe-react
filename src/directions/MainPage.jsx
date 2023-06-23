@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -7,16 +7,9 @@ import { connect } from "react-redux";
 
 function Main({ variable, updateVariable }) {
     const [elements, setElements] = useState(["active","inactive"])
-    const [loved, setLoved] = useState([]);
-    useEffect(() => {
-        let data = JSON.parse(localStorage.getItem('loved'));
-        if(data !== null) {
-            setLoved(data)
-        }
-    } , [])
     function handleDelete() {
-        document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "delete");
         document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
+        document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "delete");
         setElements(prev => [
             ...prev,
             "inactive"
@@ -29,20 +22,19 @@ function Main({ variable, updateVariable }) {
         document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "loved");
         document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
         let newItem = document.querySelector(".preview_card[data-state='loved']").getAttribute("data-food-id");
-        let newLoved = [
-            ...loved, newItem
-        ]
-        setLoved(newLoved)
-        localStorage.setItem('loved', JSON.stringify(newLoved));
         setElements(prev => [
             ...prev,
             "inactive"
         ])
+        if(typeof(variable) != "object") {
+            updateVariable(Array(newItem))
+        } else {
+            updateVariable([...variable, newItem])
+        }
         setTimeout(() => {
             document.querySelector(".preview_card[data-state='loved']").remove();
         }, 500)
     }
-    updateVariable(loved)
     return <main id="home">
         <h1 className="hero_text">BON APPETITO</h1>
         <section className="card_list_container">
