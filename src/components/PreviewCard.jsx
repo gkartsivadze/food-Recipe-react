@@ -17,7 +17,6 @@ function PreviewCard({ productId, data_mode, fullData, deleteState, variable, up
         .then((data) => setFoodData(data.meals[0]));
     } else if (fullData) {
       setFoodData(fullData);
-      console.log(fullData);
     } else {
       fetch("https://www.themealdb.com/api/json/v1/1/random.php")
         .then((data) => data.json())
