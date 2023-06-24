@@ -53,14 +53,18 @@ function PreviewCard({ productId, data_mode, fullData, deleteState, loveState, v
   }
   function toggleFavourite() {
     variable.includes(foodData.idMeal) ?
-      updateVariable(variable.filter(elem => {elem != foodData.idMeal}))
-    :
+      updateVariable(variable.filter(elem => { elem != foodData.idMeal }))
+      :
       updateVariable([...variable, foodData.idMeal])
-    ;
+      ;
   }
 
   return (
-    <div ref={containerRef} data-state={data_mode} className="preview_card" data-food-id={foodData.idMeal}>
+    <div ref={containerRef}
+      data-state={data_mode}
+      className="preview_card"
+      data-food-id={foodData.idMeal}
+    >
       <div className="image_container" onClick={redirectToProduct} ><img src={foodData.strMealThumb} alt={foodData.strMeal} /></div>
       <div className="food_info">
         <h3 title={foodData.strMeal}>{foodData.strMeal}</h3>
@@ -78,15 +82,15 @@ function PreviewCard({ productId, data_mode, fullData, deleteState, loveState, v
           deleteState && <div className="delete_btn_container">
             <button onClick={unFavouriteMe}>
               <FontAwesomeIcon icon={faTrashCan} />
-              </button>
+            </button>
           </div>
         }
         {
           loveState && <div className="delete_btn_container">
             <button onClick={toggleFavourite}>
-              {localStorage.getItem("loved").includes(foodData.idMeal) ? <FontAwesomeIcon icon={faHeartCircleCheck} /> : <FontAwesomeIcon icon={faHeart} /> }
+              {localStorage.getItem("loved").includes(foodData.idMeal) ? <FontAwesomeIcon icon={faHeartCircleCheck} /> : <FontAwesomeIcon icon={faHeart} />}
             </button>
-            </div>
+          </div>
         }
       </div>
     </div>

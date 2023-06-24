@@ -10,7 +10,7 @@
   --black: rgb(56, 52, 52);
   color-scheme: light dark;
   color: var(--white);
-  background-color: var(--black);
+  background-image: linear-gradient(rgb(39, 39, 39), rgb(59, 70, 62));
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -72,6 +72,10 @@ nav #favourite_counter {
   right: 0;
 }
 
+#menu_button {
+  display: none;
+}
+
 #root {
   min-height: 100vh;
 }
@@ -103,7 +107,7 @@ nav #favourite_counter {
   box-shadow: 0 0 1rem var(--black);
   transition: left 0.5s, transform 0.5s, filter 0.5s, background-color 0.5s, box-shadow 0.5s;
 }
-.preview_card:hover {
+.preview_card:hover, .preview_card:focus-within {
   box-shadow: 0 0 0.5rem 0.01rem var(--white);
 }
 .preview_card .image_container {
@@ -121,7 +125,7 @@ nav #favourite_counter {
   transition: filter 0.5s;
   filter: opacity(0);
 }
-.preview_card .image_container:hover:after {
+.preview_card .image_container:hover:after, .preview_card .image_container:focus:after {
   filter: opacity(1);
 }
 .preview_card img {
@@ -393,4 +397,48 @@ main {
 }
 .category_card:hover img, .category_card:focus img {
   transform: scale(1.1);
+}
+
+@media (max-width: 1100px) {
+  nav {
+    padding-inline: 1rem;
+  }
+}
+@media (max-width: 950px) {
+  .navigation {
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+    transform: translate(100%);
+    transition: transform 0.5s;
+  }
+  .navigation a {
+    width: 20rem;
+  }
+  .navigation a #favourite_counter {
+    top: 50%;
+    left: 12rem;
+    transform: translate(-50%, -50%);
+  }
+  #menu_button {
+    display: block;
+    font-size: 2rem;
+    padding: 0.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.5s;
+    z-index: 10;
+    color: var(--white);
+  }
+  #menu_button:hover {
+    color: var(--orange);
+  }
 }/*# sourceMappingURL=index.css.map */

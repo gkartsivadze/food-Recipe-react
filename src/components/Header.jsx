@@ -1,11 +1,14 @@
-import React from "react"
-import { Link } from "react-router-dom";
+import React, { useState } from "react"
+import { Link, useSearchParams } from "react-router-dom";
 import { connect } from "react-redux"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 
 function Header({ variable }) {
+    const [menuState, setMenuState] = useState(false)
     return <nav>
         <h1 className="logo">Receptionera</h1>
-        <div className="navigation">
+        <div className="navigation" style={window.innerWidth < 950 && menuState ? {transform: "translate(0)"} : {}}>
             <Link to="/">HOME</Link>
             <Link to="/categories">CATEGORIES</Link>
             <Link to="/search-page">SEARCH</Link>
@@ -13,6 +16,9 @@ function Header({ variable }) {
                 {typeof(variable) == "object" ? variable.length : 0}
                 </span></Link>
         </div>
+        <button onClick={() => setMenuState(prev => !prev)} id="menu_button">
+            <FontAwesomeIcon icon={menuState ? faX : faBars} />
+        </button>
     </nav>
 }
 
