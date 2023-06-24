@@ -9,14 +9,17 @@ export default function SearchPage() {
     const [filter, setFilter] = useState({
         category: "",
         country: "",
-        ingredient: ""
+        ingredient: "",
+        name: ""
 
     })
+    const [searchingState, setSearchingState] = useState(false);
     const [filteredFoods, setFilteredFoods] = useState([]);
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const importedCategory = queryParams.get("category");
     const categoryElem = useRef(0);
+    const popupTextRef = useRef(0);
 
     useEffect(() => {
         if (importedCategory) {
@@ -59,6 +62,12 @@ export default function SearchPage() {
                     ])
                 })
             });
+        return () => {
+            setFilteredFoods([]);
+            setCategories([]);
+            setAreas([]);
+            setIngredients([]);
+        }
     }, [])
     function synchronizeData(event) {
         setFilter(prev => ({
@@ -66,38 +75,48 @@ export default function SearchPage() {
             [event.target.name]: event.target.value.startsWith("Choose") ? "" : event.target.value
         }))
     }
-    useEffect(() => {
+    async function getData() {
+        popupTextRef.current.style.opacity = 0;
+        let foodByName;
         let foodByCategory;
         let foodByArea;
         let foodByIngredient;
-        getData();
-        async function getData() {
-            let newData = [];
-            let count = 0;
-            if (filter.category != "") {
-                await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${filter.category}`)
-                    .then(data => data.json())
-                    .then(data => {
-                        foodByCategory = data.meals;
-                        count += 1;
-                    });
-            }
-            if (filter.country != "") {
-                await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${filter.country}`)
-                    .then(data => data.json())
-                    .then(data => {
-                        foodByArea = data.meals;
-                        count += 1;
-                    });
+        let newData = [];
+        let count = 0;
+        if (filter.name.length >= 3) {
+            
+            await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${filter.name}`)
+            .then(data => data.json())
+            .then(data => {
+                foodByName = data.meals;
+                count += 1;
+            });
+        }
+        if (filter.category != "") {
+            await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${filter.category}`)
+            .then(data => data.json())
+            .then(data => {
+                foodByCategory = data.meals;
+                count += 1;
+            });
+        }
+        if (filter.country != "") {
+            await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${filter.country}`)
+                .then(data => data.json())
+                .then(data => {
+                    foodByArea = data.meals;
+                    count += 1;
+                });
             }
             if (filter.ingredient != "") {
                 await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${filter.ingredient}`)
-                    .then(data => data.json())
-                    .then(data => {
-                        foodByIngredient = data.meals;
-                        count += 1;
-                    });
+                .then(data => data.json())
+                .then(data => {
+                    foodByIngredient = data.meals;
+                    count += 1;
+                });
             }
+            foodByName ? newData.push(...foodByName) : "";
             foodByCategory ? newData.push(...foodByCategory) : "";
             foodByArea ? newData.push(...foodByArea) : "";
             foodByIngredient ? newData.push(...foodByIngredient) : "";
@@ -107,54 +126,56 @@ export default function SearchPage() {
                     filteredData.push(elem.idMeal);
                 }
             });
-            setFilteredFoods(filteredData);
-        }
-    }, [filter])
+            if(count > 0) {
+                setSearchingState(true);
+            } else {
+                setSearchingState(true);
+            }
+        popupTextRef.current.style.opacity = 1;
+        setFilteredFoods(filteredData);
+    }
 
     return <main id="search_page">
         <div className="category_selector">
-            <div className='display-flex'>
-                <label>Category: </label>
-                <select value={filter.category} ref={categoryElem} onChange={synchronizeData} name="category">
-                    <option>Choose Category</option>
-                    {
-                        categories.map(elem => {
-                            return <option key={elem}>{elem}</option>
-                        })
-                    }
-                </select>
-            </div>
-            <div className='display-flex'>
-                <label>Country: </label>
-                <select onChange={synchronizeData} name="country">
-                    <option>Choose Area</option>
-                    {
-                        areas.map((elem, ind) => {
-                            return <option key={ind}>{elem}</option>
-                        })
-                    }
-                </select>
-            </div>
-            <div className='display-flex'>
-                <label>Ingredient: </label>
-                <select onChange={synchronizeData} name="ingredient">
-                    <option>Choose Ingredient</option>
-                    {
-                        ingredients.map((elem, ind) => {
-                            return <option key={ind}>{elem}</option>
-                        })
-                    }
-                </select>
-            </div>
+            <label>Search by name : <input type="text"
+                placeholder="Peperoni"
+                onChange={synchronizeData}
+                name="name" />
+            </label>
+            <select value={filter.category} ref={categoryElem} onChange={synchronizeData} name="category">
+                <option>Choose Category</option>
+                {
+                    categories.map(elem => {
+                        return <option key={elem}>{elem}</option>
+                    })
+                }
+            </select>
+            <select onChange={synchronizeData} name="country">
+                <option>Choose Area</option>
+                {
+                    areas.map((elem, ind) => {
+                        return <option key={ind}>{elem}</option>
+                    })
+                }
+            </select>
+            <select onChange={synchronizeData} name="ingredient">
+                <option>Choose Ingredient</option>
+                {
+                    ingredients.map((elem, ind) => {
+                        return <option key={ind}>{elem}</option>
+                    })
+                }
+            </select>
+            <button onClick={getData}>Search</button>
         </div>
         <section className="card_list_container">
             {filteredFoods.length > 0 && filteredFoods.map(elem => {
-                    return <PreviewCard key={elem} productId={elem} loveState={true} />
-                })
+                return <PreviewCard key={elem} productId={elem} loveState={true} />
+            })
             }
         </section>
         {
-            filteredFoods.length > 0 || <h1 className="popup_text text-center">Nothing Found</h1> 
+            filteredFoods.length > 0 || <h2 ref={popupTextRef} className="popup_text text-center">{searchingState ? "Nothing Found" : "Let's find something"}</h2>
         }
     </main>
 }
