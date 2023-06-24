@@ -126,7 +126,7 @@ nav {
   overflow: hidden;
   box-shadow: 0 0 1rem var(--black);
   transition: left 0.5s, transform 0.5s, filter 0.5s, background-color 0.5s, box-shadow 0.5s;
-
+  animation: showUp 0.2s forwards;
   &:hover,
   &:focus-within {
     box-shadow: 0 0 0.5rem 0.01rem var(--white);
@@ -646,6 +646,23 @@ main {
   }
 }
 
+@media (max-width: 550px) {
+  #product_page {
+    .top_section {
+      img {
+        width: 100%;
+        height: auto;
+      }
+      padding-inline: 0;
+    }
+    .grid_container {
+      border: none;
+      width: 100%;
+      min-width: auto !important;
+    }
+  }
+}
+
 @media (max-width: 500px) {
   html {
     font-size: 14px;
@@ -671,5 +688,19 @@ main {
 @media (max-width: 400px) {
   html {
     font-size: 12px;
+  }
+}
+
+
+.preview_card, .category_card, .category_selector, .hero_text {
+  animation: showUp 0.5s forwards;
+}
+
+@keyframes showUp {
+  from {
+    filter: opacity(0)
+  }
+  to {
+    filter: opacity(1);
   }
 }
