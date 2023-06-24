@@ -42,6 +42,10 @@ a {
   text-decoration: none;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -346,6 +350,7 @@ main {
 
 .logo {
   font-size: 3rem;
+  user-select: none;
 }
 
 .category_selector {
