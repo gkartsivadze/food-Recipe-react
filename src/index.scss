@@ -288,9 +288,9 @@ nav {
   grid-template-columns: repeat(3, 1fr);
   padding: 3rem;
   margin: 2rem;
-  background: var(--light-green);
+  background-color: var(--light-green);
   gap: 3rem;
-
+  border-radius: 1rem;
   .display-flex {
     gap: 0.5rem;
   }
@@ -298,6 +298,7 @@ nav {
   select {
     padding: 0.25rem 0.5rem;
     flex: 1 1 auto;
+    cursor: pointer;
   }
 }
 
@@ -305,6 +306,7 @@ nav {
   background-color: var(--green);
   padding: 1rem 2rem;
   border-radius: 1rem;
+  margin-inline: 2rem;
 }
 
 #product_page {
