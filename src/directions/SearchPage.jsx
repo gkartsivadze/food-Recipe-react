@@ -111,7 +111,7 @@ export default function SearchPage() {
         }
     }, [filter])
 
-    return <main>
+    return <main id="search_page">
         <div className="category_selector">
             <div className='display-flex'>
                 <label>Category: </label>

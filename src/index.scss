@@ -97,7 +97,7 @@ nav {
 
 .card_list_container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 40rem);
+  grid-template-columns: repeat(auto-fill, 50rem);
 
   gap: 2rem;
   justify-content: space-evenly;
@@ -114,36 +114,48 @@ nav {
   overflow: hidden;
   box-shadow: 0 0 1rem var(--black);
   transition: left 0.5s, transform 0.5s, filter 0.5s, background-color 0.5s, box-shadow 0.5s;
-  &:hover, &:focus-within {
+
+  &:hover,
+  &:focus-within {
     box-shadow: 0 0 0.5rem 0.01rem var(--white);
   }
+
   .image_container {
     cursor: pointer;
+
     &:after {
       content: '';
       position: absolute;
-      left: 0; top: 0; bottom: 0; right: 30rem;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 30rem;
       background: url(./assets/read-svgrepo-com.svg) center no-repeat,
-                  rgba(255, 255, 255, 0.2);
+        rgba(255, 255, 255, 0.2);
       background-size: 10rem;
       transition: filter 0.5s;
       filter: opacity(0);
     }
-    &:hover:after, &:focus:after {
+
+    &:hover:after,
+    &:focus:after {
       filter: opacity(1);
     }
   }
+
   img {
     height: 20rem;
     width: 20rem;
     aspect-ratio: 1;
     object-fit: cover;
   }
+
   .food_info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 30rem;
+
     h3 {
       height: 3rem;
       padding: 0.5rem 1rem;
@@ -151,16 +163,20 @@ nav {
       overflow: hidden;
       white-space: nowrap;
     }
+
     ::-webkit-scrollbar {
       width: 1rem;
     }
+
     ::-webkit-scrollbar-thumb {
       background-color: transparent;
       box-shadow: inset 0 0 0.25rem var(--black);
+
       &:hover {
         background-color: var(--orange);
       }
     }
+
     ul {
       height: 100%;
       box-shadow: inset 0 0 1rem var(--black);
@@ -169,14 +185,17 @@ nav {
       flex-direction: column;
       overflow: auto;
       position: relative;
+
       li {
         display: flex;
         justify-content: space-between;
         padding: 0.25rem 1.5rem;
         transition: background-color 0.5s, padding 0.5s;
+
         &:hover {
           background-color: var(--orange);
         }
+
         p:nth-of-type(odd) {
           color: var(--cream);
         }
@@ -192,15 +211,18 @@ nav {
     height: 30rem;
     position: relative;
     overflow: hidden;
+
     .preview_card {
       position: absolute;
       transition-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
     }
+
     .preview_card[data-state="pastactive"] {
       left: -100%;
       top: 50%;
       transform: translate(-50%, -50%);
     }
+
     .preview_card[data-state="loved"] {
       left: 50%;
       top: 50%;
@@ -208,6 +230,7 @@ nav {
       background-color: var(--very-green);
       filter: blur(2rem);
     }
+
     .preview_card[data-state="delete"] {
       left: 50%;
       top: 50%;
@@ -215,23 +238,27 @@ nav {
       background-color: var(--red);
       filter: blur(2rem);
     }
+
     .preview_card[data-state="active"] {
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
     }
+
     .preview_card[data-state="inactive"] {
       left: 100%;
       top: 50%;
       transform: translate(0, -50%);
     }
-    
+
   }
+
   .food_buttons {
     display: flex;
     justify-content: center;
     padding-block: 2rem;
     gap: 3rem;
+
     button {
       cursor: pointer;
       transition: color 0.2s, background-color 0.2s;
@@ -240,6 +267,7 @@ nav {
       height: 3rem;
       border-radius: 50%;
       border: none;
+
       &.full_list {
         &:hover {
           background-color: grey;
@@ -269,6 +297,7 @@ main {
     font-size: 1.25rem;
     cursor: pointer;
     transition: background-color 0.5s;
+
     &:hover {
       background-color: var(--red);
     }
@@ -283,7 +312,35 @@ main {
 
 #categories_page {
   .card_list_container {
-    grid-template-columns: repeat(auto-fill, 20rem);
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1rem 2rem;
+  }
+}
+
+.category_card {
+  border-radius: 1rem;
+  text-align: center;
+  background: radial-gradient(#636b64, #263A29);
+  box-shadow: 0 0 1rem inset black;
+  transition: box-shadow 0.5s;
+  cursor: pointer;
+  outline: none;
+
+  img {
+    border-radius: 1rem 1rem 0 0;
+    transition: transform 0.2s;
+    max-width: 100%;
+  }
+  h2 {
+    padding: 0.5rem 1rem;
+  }
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 1rem inset white;
+
+    img {
+      transform: scale(1.1);
+    }
   }
 }
 
@@ -299,6 +356,7 @@ main {
   background-color: var(--light-green);
   gap: 3rem;
   border-radius: 1rem;
+
   .display-flex {
     gap: 0.5rem;
   }
@@ -345,20 +403,22 @@ main {
       border: 1px solid var(--orange);
       padding: 2rem 1rem;
       min-width: 25rem;
+
       h2 {
         margin-bottom: 1rem;
       }
+
       ul {
         li {
           display: flex;
           justify-content: space-between;
           margin-bottom: 0.5rem;
         }
-  
+
         li:nth-of-type(odd) {
           border-bottom: 1px solid var(--light-green)
         }
-  
+
         li:nth-of-type(even) {
           border-bottom: 1px solid var(--orange)
         }
@@ -411,33 +471,39 @@ main {
   display: flex;
 }
 
-.category_card {
-  border-radius: 1rem;
-  text-align: center;
-  background: radial-gradient(#636b64, #263A29);
-  box-shadow: 0 0 1rem inset black;
-  transition: box-shadow 0.5s;
-  cursor: pointer;
-  outline: none;
-
-  img {
-    border-radius: 1rem 1rem 0 0;
-    transition: transform 0.2s;
+@media (max-width: 1100px) {
+  nav {
+    padding-inline: 1rem;
   }
 
-  &:hover,
-  &:focus {
-    box-shadow: 0 0 1rem inset white;
+  .category_card {
+    width: fit-content;
 
     img {
-      transform: scale(1.1);
+      max-width: 100%;
+    }
+  }
+  #search_page {
+    .category_selector {
+      padding: 1rem 2rem;
+    }
+    .display-flex {
+      flex-direction: column;
     }
   }
 }
 
-@media (max-width: 1100px) {
-  nav {
-    padding-inline: 1rem;
+@media (max-width: 1000px) {
+  #categories_page .card_list_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #product_page {
+    .top_section {
+      flex-direction: column;
+      .grid_container {
+        min-width: 30rem;
+      }
+    }
   }
 }
 
@@ -448,12 +514,17 @@ main {
     justify-content: center;
     flex-direction: column;
     position: fixed;
-    right: 0; top: 0; bottom: 0;
-    backdrop-filter: blur(5px);
+    right: 0;
+    top: 0;
+    bottom: 0;
+    backdrop-filter: blur(1rem);
     transform: translate(100%);
     transition: transform 0.5s;
+    background-color: rgba(0, 0, 0, 0.3);
+
     a {
       width: 20rem;
+
       #favourite_counter {
         top: 50%;
         left: 12rem;
@@ -461,6 +532,7 @@ main {
       }
     }
   }
+
   #menu_button {
     display: block;
     font-size: 2rem;
@@ -471,8 +543,94 @@ main {
     transition: color 0.5s;
     z-index: 10;
     color: var(--white);
+
     &:hover {
       color: var(--orange)
     }
+  }
+
+  .preview_card {
+    width: 20rem;
+    height: 40rem;
+    flex-direction: column;
+
+    .food_info {
+      width: 20rem;
+      height: 20rem;
+    }
+  }
+  #home {
+    .card_list_container {
+      height: 45rem;
+
+    }
+  }
+  .card_list_container {
+    grid-template-columns: repeat(auto-fill, 20rem);
+    gap: 2rem;
+  }
+
+}
+
+@media(max-width: 800px) {
+  .logo {
+    font-size: 2rem;
+  }
+
+  .hero_text {
+    font-size: 2rem;
+  }
+  #search_page {
+    .category_selector {
+      grid-template-columns: 1fr 1fr;
+      .display-flex:last-child {
+        grid-column: 1 / 3;
+      }
+    }
+  }
+  .category_card {
+    h2 {
+      font-size: 1rem;
+    }
+  }
+  #product_page {
+    .details_section {
+      padding-inline: 2rem;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .food_instruction {
+      padding-inline: 0;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  #categories_page {
+    .card_list_container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 450px) {
+  #search_page {
+    .category_selector {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  html {
+    font-size: 12px;
   }
 }

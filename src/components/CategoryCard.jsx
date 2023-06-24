@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CategoryCard({categoryName, categoryThumb}) {
     const navigate = useNavigate();
@@ -13,6 +13,6 @@ export default function CategoryCard({categoryName, categoryThumb}) {
     }
     return <div onClick={handleNavigation} tabIndex={1} className="category_card">
         <img src={categoryThumb} alt={categoryName} />
-        <h1>{categoryName}</h1>
+        <h2>{categoryName}</h2>
     </div>
 }
