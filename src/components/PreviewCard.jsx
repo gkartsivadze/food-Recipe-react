@@ -46,7 +46,7 @@ function PreviewCard({ productId, data_mode, fullData, deleteState, variable, up
     const searchParams = new URLSearchParams(queryParams).toString();
     navigate(`/product-page?${searchParams}`);
   }
-  function unFavouriteMe(event) {
+  function unFavouriteMe() {
     let newVal = localStorage.getItem("loved").split(",").filter(x => x != productId);
     // localStorage.setItem("loved", newVal)
     updateVariable(newVal)

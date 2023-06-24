@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CategoryCard from "../components/CategoryCard";
-import { connect } from "react-redux";
 
-function Categories({variable, updateVariable}) {
+function Categories() {
     const [categories, setCategories] = useState([])
     useEffect(() => {
         fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
@@ -35,12 +34,4 @@ function Categories({variable, updateVariable}) {
 
 }
 
-const mapStateToProps = (state) => ({
-    variable: state.variable
-  })
-  
-  const mapDispatchToProps = (dispatch) => ({
-    updateVariable: (newVariable) => dispatch({ type: 'SYNCHRONIZE', payload: newVariable })
-  })
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Categories)
+export default Categories;

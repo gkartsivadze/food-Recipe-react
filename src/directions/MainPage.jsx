@@ -19,9 +19,9 @@ function Main({ variable, updateVariable }) {
         }, 500)
     }
     function handleLove() {
+        let newItem = document.querySelector(".preview_card[data-state='active']").getAttribute("data-food-id");
         document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "loved");
         document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
-        let newItem = document.querySelector(".preview_card[data-state='loved']").getAttribute("data-food-id");
         setElements(prev => [
             ...prev,
             "inactive"
