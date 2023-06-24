@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import PreviewCard from "../components/PreviewCard";
-import { useLocation } from "react-router-dom";
 
 export default function SearchPage() {
     const [categories, setCategories] = useState([]);
@@ -15,20 +14,10 @@ export default function SearchPage() {
     })
     const [searchingState, setSearchingState] = useState(false);
     const [filteredFoods, setFilteredFoods] = useState([]);
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const importedCategory = queryParams.get("category");
     const categoryElem = useRef(0);
     const popupTextRef = useRef(0);
 
     useEffect(() => {
-        if (importedCategory) {
-            setFilter(prev => ({
-                ...prev,
-                category: importedCategory
-            }))
-            categoryElem.value = importedCategory;
-        }
         fetch("https://www.themealdb.com/api/json/v1/1/list.php?c=list")
             .then(data => data.json())
             .then(data => {

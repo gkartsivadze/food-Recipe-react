@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +10,6 @@ function Header({ variable }) {
         <h1 className="logo">Receptionera</h1>
         <div className="navigation" style={window.innerWidth < 950 && menuState ? {transform: "translate(0)"} : {}}>
             <Link onClick={() => setMenuState(false)} to="/">HOME</Link>
-            <Link onClick={() => setMenuState(false)} to="/categories">CATEGORIES</Link>
             <Link onClick={() => setMenuState(false)} to="/search-page">SEARCH</Link>
             <Link onClick={() => setMenuState(false)} to="/favourites">FAVOURITES<span id="favourite_counter">
                 {typeof(variable) == "object" ? variable.length : 0}

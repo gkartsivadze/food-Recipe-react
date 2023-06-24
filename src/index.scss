@@ -320,42 +320,6 @@ main {
   }
 }
 
-#categories_page {
-  .card_list_container {
-    grid-template-columns: repeat(4, 1fr);
-    padding: 1rem 2rem;
-  }
-}
-
-.category_card {
-  border-radius: 1rem;
-  text-align: center;
-  background: radial-gradient(#636b64, #263A29);
-  box-shadow: 0 0 4rem inset var(--black);
-  transition: box-shadow 0.5s;
-  cursor: pointer;
-  outline: none;
-
-  img {
-    border-radius: 1rem 1rem 0 0;
-    transition: transform 0.2s;
-    max-width: 100%;
-  }
-
-  h2 {
-    padding: 0.5rem 1rem;
-  }
-
-  &:hover,
-  &:focus {
-    box-shadow: 0 0 1rem inset white;
-
-    img {
-      transform: scale(1.1);
-    }
-  }
-}
-
 .logo {
   font-size: 3rem;
   user-select: none;
@@ -504,21 +468,9 @@ main {
   nav {
     padding-inline: 1rem;
   }
-
-  .category_card {
-    width: fit-content;
-
-    img {
-      max-width: 100%;
-    }
-  }
 }
 
 @media (max-width: 1000px) {
-  #categories_page .card_list_container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   #product_page {
     .top_section {
       flex-direction: column;
@@ -618,12 +570,6 @@ main {
     }
   }
 
-  .category_card {
-    h2 {
-      font-size: 1rem;
-    }
-  }
-
   #product_page {
     .details_section {
       padding-inline: 2rem;
@@ -634,14 +580,6 @@ main {
     .food_instruction {
       padding-inline: 0;
       margin: 0;
-    }
-  }
-}
-
-@media (max-width: 600px) {
-  #categories_page {
-    .card_list_container {
-      grid-template-columns: repeat(2, 1fr);
     }
   }
 }
@@ -692,7 +630,7 @@ main {
 }
 
 
-.preview_card, .category_card, .category_selector, .hero_text {
+.preview_card, .category_selector, .hero_text {
   animation: showUp 0.5s forwards;
 }
 
