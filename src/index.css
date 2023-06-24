@@ -91,7 +91,7 @@ nav #favourite_counter {
 }
 
 .hero_text {
-  margin-block: 2rem;
+  margin-top: 4rem;
   font-size: 3rem;
   text-align: center;
   padding-block: 1rem;
@@ -275,35 +275,6 @@ main {
   padding-block: 2rem;
 }
 
-#categories_page .card_list_container {
-  grid-template-columns: repeat(4, 1fr);
-  padding: 1rem 2rem;
-}
-
-.category_card {
-  border-radius: 1rem;
-  text-align: center;
-  background: radial-gradient(#636b64, #263A29);
-  box-shadow: 0 0 4rem inset var(--black);
-  transition: box-shadow 0.5s;
-  cursor: pointer;
-  outline: none;
-}
-.category_card img {
-  border-radius: 1rem 1rem 0 0;
-  transition: transform 0.2s;
-  max-width: 100%;
-}
-.category_card h2 {
-  padding: 0.5rem 1rem;
-}
-.category_card:hover, .category_card:focus {
-  box-shadow: 0 0 1rem inset white;
-}
-.category_card:hover img, .category_card:focus img {
-  transform: scale(1.1);
-}
-
 .logo {
   font-size: 3rem;
   -webkit-user-select: none;
@@ -437,18 +408,8 @@ main {
   nav {
     padding-inline: 1rem;
   }
-  .category_card {
-    width: -moz-fit-content;
-    width: fit-content;
-  }
-  .category_card img {
-    max-width: 100%;
-  }
 }
 @media (max-width: 1000px) {
-  #categories_page .card_list_container {
-    grid-template-columns: repeat(3, 1fr);
-  }
   #product_page .top_section {
     flex-direction: column;
   }
@@ -506,6 +467,9 @@ main {
   #home .card_list_container {
     height: 45rem;
   }
+  #home .hero_text {
+    margin-top: 2rem;
+  }
   .card_list_container {
     grid-template-columns: repeat(auto-fill, 20rem);
     gap: 2rem;
@@ -526,9 +490,6 @@ main {
   #search_page .category_selector label input[type=text] {
     flex: 1 1 auto;
   }
-  .category_card h2 {
-    font-size: 1rem;
-  }
   #product_page .details_section {
     padding-inline: 2rem;
     flex-direction: column;
@@ -537,11 +498,6 @@ main {
   #product_page .food_instruction {
     padding-inline: 0;
     margin: 0;
-  }
-}
-@media (max-width: 600px) {
-  #categories_page .card_list_container {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (max-width: 550px) {
@@ -581,7 +537,7 @@ main {
     font-size: 12px;
   }
 }
-.preview_card, .category_card, .category_selector, .hero_text {
+.preview_card, .category_selector, .hero_text {
   animation: showUp 0.5s forwards;
 }
 

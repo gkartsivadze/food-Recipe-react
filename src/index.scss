@@ -99,7 +99,7 @@ nav {
 }
 
 .hero_text {
-  margin-block: 2rem;
+  margin-top: 4rem;
   font-size: 3rem;
   text-align: center;
   padding-block: 1rem;
@@ -537,7 +537,9 @@ main {
   #home {
     .card_list_container {
       height: 45rem;
-
+    }
+    .hero_text {
+      margin-top: 2rem;
     }
   }
 
