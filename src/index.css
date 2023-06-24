@@ -28,6 +28,12 @@ select {
   font-weight: 400;
 }
 
+button,
+textarea,
+select {
+  cursor: pointer;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -95,6 +101,7 @@ nav #favourite_counter {
 .card_list_container {
   display: grid;
   grid-template-columns: repeat(auto-fill, 50rem);
+  padding-inline: 1rem;
   gap: 2rem;
   justify-content: space-evenly;
   justify-items: center;
@@ -230,7 +237,6 @@ nav #favourite_counter {
   gap: 3rem;
 }
 #home .food_buttons button {
-  cursor: pointer;
   transition: color 0.2s, background-color 0.2s;
   font-size: 1.5rem;
   width: 3rem;
@@ -257,7 +263,6 @@ main {
   border: none;
   padding: 0.25rem 0.5rem;
   font-size: 1.25rem;
-  cursor: pointer;
   transition: background-color 0.5s;
 }
 .delete_btn_container button:hover {
@@ -305,29 +310,39 @@ main {
 }
 
 .category_selector {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  margin: 2rem auto;
+  width: min(35rem, 95%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   padding: 2rem;
-  margin: 2rem;
   background-color: var(--light-green);
-  gap: 3rem;
   border-radius: 1rem;
 }
 .category_selector label {
-  grid-column: 1/4;
   display: flex;
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
 }
 .category_selector label input[type=text] {
   padding: 0.25rem 0.5rem;
   outline-color: var(--orange);
-  width: 20rem;
+  width: 100%;
 }
 .category_selector select {
   padding: 0.25rem 0.5rem;
-  cursor: pointer;
+}
+.category_selector button {
+  border: none;
+  padding: 0.5rem;
+  background-color: var(--green);
+  color: var(--white);
+  border-radius: 0.5rem;
+}
+.category_selector button:active {
+  box-shadow: 0 0 1rem var(--black) inset;
 }
 
 .popup_text {
@@ -406,7 +421,6 @@ main {
   border: none;
   background-color: transparent;
   color: var(--cream);
-  cursor: pointer;
 }
 
 .text-center {
@@ -470,7 +484,6 @@ main {
     padding: 0.5rem;
     background-color: transparent;
     border: none;
-    cursor: pointer;
     transition: color 0.5s;
     z-index: 10;
     color: var(--white);
@@ -506,9 +519,6 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-  }
-  #search_page .category_selector label {
-    white-space: nowrap;
   }
   #search_page .category_selector label input[type=text] {
     flex: 1 1 auto;
