@@ -333,9 +333,7 @@ main {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 3rem;
   padding-inline: 5rem;
-  margin-block: 2rem;
 }
 #product_page .top_section img {
   height: 30rem;
