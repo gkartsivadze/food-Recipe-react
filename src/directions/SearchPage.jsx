@@ -140,7 +140,8 @@ export default function SearchPage() {
             <label>Search by name : <input type="text"
                 placeholder="Peperoni"
                 onChange={synchronizeData}
-                name="name" />
+                name="name"
+                autoComplete="none" />
             </label>
             <select value={filter.category} ref={categoryElem} onChange={synchronizeData} name="category">
                 <option>Choose Category</option>
@@ -150,7 +151,9 @@ export default function SearchPage() {
                     })
                 }
             </select>
-            <select onChange={synchronizeData} name="country">
+            <select onChange={synchronizeData}
+                    name="country"
+                    autoComplete="none">
                 <option>Choose Area</option>
                 {
                     areas.map((elem, ind) => {
@@ -158,7 +161,8 @@ export default function SearchPage() {
                     })
                 }
             </select>
-            <select onChange={synchronizeData} name="ingredient">
+            <select onChange={synchronizeData}
+                    name="ingredient">
                 <option>Choose Ingredient</option>
                 {
                     ingredients.map((elem, ind) => {
