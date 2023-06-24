@@ -149,7 +149,7 @@ export default function SearchPage() {
         </div>
         <section className="card_list_container">
             {filteredFoods.length > 0 && filteredFoods.map(elem => {
-                    return <PreviewCard key={elem} productId={elem} />
+                    return <PreviewCard key={elem} productId={elem} loveState={true} />
                 })
             }
         </section>

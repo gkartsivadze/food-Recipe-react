@@ -1,10 +1,11 @@
-import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { faHeart, faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { faHeartCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux"
 
-function PreviewCard({ productId, data_mode, fullData, deleteState, variable, updateVariable }) {
+function PreviewCard({ productId, data_mode, fullData, deleteState, loveState, variable, updateVariable }) {
   const [foodData, setFoodData] = useState({});
   const [ingredients, setIngredients] = useState([]);
   const elementRef = useRef(null);
@@ -48,10 +49,16 @@ function PreviewCard({ productId, data_mode, fullData, deleteState, variable, up
   }
   function unFavouriteMe() {
     let newVal = localStorage.getItem("loved").split(",").filter(x => x != productId);
-    // localStorage.setItem("loved", newVal)
     updateVariable(newVal)
-    // containerRef.current.remove();
   }
+  function toggleFavourite() {
+    variable.includes(foodData.idMeal) ?
+      updateVariable(variable.filter(elem => {elem != foodData.idMeal}))
+    :
+      updateVariable([...variable, foodData.idMeal])
+    ;
+  }
+
   return (
     <div ref={containerRef} data-state={data_mode} className="preview_card" data-food-id={foodData.idMeal}>
       <div className="image_container" onClick={redirectToProduct} ><img src={foodData.strMealThumb} alt={foodData.strMeal} /></div>
@@ -69,8 +76,17 @@ function PreviewCard({ productId, data_mode, fullData, deleteState, variable, up
         </ul>
         {
           deleteState && <div className="delete_btn_container">
-            <button onClick={unFavouriteMe}><FontAwesomeIcon icon={faTrashCan} /></button>
+            <button onClick={unFavouriteMe}>
+              <FontAwesomeIcon icon={faTrashCan} />
+              </button>
           </div>
+        }
+        {
+          loveState && <div className="delete_btn_container">
+            <button onClick={toggleFavourite}>
+              {localStorage.getItem("loved").includes(foodData.idMeal) ? <FontAwesomeIcon icon={faHeartCircleCheck} /> : <FontAwesomeIcon icon={faHeart} /> }
+            </button>
+            </div>
         }
       </div>
     </div>

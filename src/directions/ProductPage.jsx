@@ -1,7 +1,11 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeartCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default function ProductPage() {
+function ProductPage({variable, updateVariable}) {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
@@ -26,6 +30,13 @@ export default function ProductPage() {
     }
     setIngredients(arr);
   }, [foodData]);
+  function toggleFavourite() {
+    variable.includes(foodData.idMeal) ?
+      updateVariable(variable.filter(elem => {elem != foodData.idMeal}))
+    :
+      updateVariable([...variable, foodData.idMeal])
+    ;
+  }
 
   return (
     <main id="product_page">
@@ -44,6 +55,9 @@ export default function ProductPage() {
               );
             })}
           </ul>
+          <button className='favourite-btn' onClick={toggleFavourite}>
+              {localStorage.getItem("loved").includes(foodData.idMeal) ? <FontAwesomeIcon icon={faHeartCircleCheck} /> : <FontAwesomeIcon icon={faHeart} /> }
+            </button>
         </div>
       </section>
       <section className='details_section'>
@@ -58,3 +72,13 @@ export default function ProductPage() {
     </main>
   );
 };
+
+const mapStateToProps = (state) => ({
+  variable: state.variable
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  updateVariable: (newVariable) => dispatch({ type: 'SYNCHRONIZE', payload: newVariable })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

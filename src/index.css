@@ -240,6 +240,10 @@ nav #favourite_counter {
   background-color: var(--red);
 }
 
+main {
+  padding-bottom: 2rem;
+}
+
 .delete_btn_container button {
   float: right;
   border: none;
@@ -302,7 +306,6 @@ nav #favourite_counter {
   align-items: center;
   margin-top: 3rem;
   padding-inline: 5rem;
-  color: var(--light-green);
   margin-block: 2rem;
 }
 #product_page .top_section img {
@@ -312,22 +315,29 @@ nav #favourite_counter {
   -o-object-fit: cover;
      object-fit: cover;
 }
-#product_page .top_section ul li {
+#product_page .top_section .grid_container {
+  border: 1px solid var(--orange);
+  padding: 2rem 1rem;
+  min-width: 25rem;
+}
+#product_page .top_section .grid_container h2 {
+  margin-bottom: 1rem;
+}
+#product_page .top_section .grid_container ul li {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
-#product_page .top_section ul li:nth-of-type(odd) {
+#product_page .top_section .grid_container ul li:nth-of-type(odd) {
   border-bottom: 1px solid var(--light-green);
 }
-#product_page .top_section ul li:nth-of-type(even) {
+#product_page .top_section .grid_container ul li:nth-of-type(even) {
   border-bottom: 1px solid var(--orange);
 }
 #product_page .details_section {
   display: flex;
-  color: var(--light-green);
   justify-content: space-between;
-  padding: 1rem 5rem;
-  font-size: 1.5rem;
+  padding: 0.5rem 5rem;
   border-top: 1px solid var(--orange);
   border-bottom: 1px solid var(--orange);
   margin-block: 1rem;
@@ -346,6 +356,15 @@ nav #favourite_counter {
 }
 #product_page .food_instruction p {
   padding: 2rem;
+}
+
+.favourite-btn {
+  float: right;
+  font-size: 3rem;
+  border: none;
+  background-color: transparent;
+  color: var(--cream);
+  cursor: pointer;
 }
 
 .text-center {
