@@ -58,6 +58,8 @@ button {
 }
 
 nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,7 +68,7 @@ nav {
   color: var(--cream);
   background-color: var(--nav-background);
   box-shadow: 0 0 1rem var(--black);
-
+  z-index: 8;
   a {
     display: inline-block;
     padding: 1rem;
@@ -111,7 +113,6 @@ nav {
 }
 
 .hero_text {
-  margin-top: 4rem;
   font-size: 3rem;
   text-align: center;
   padding-block: 1rem;
@@ -230,9 +231,14 @@ nav {
 
 
 #home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-height: 100dvh;
+  gap: 2rem;
   .card_list_container {
     display: block;
-    height: 30rem;
+    height: 20rem;
     position: relative;
     overflow: hidden;
 
@@ -280,7 +286,6 @@ nav {
   .food_buttons {
     display: flex;
     justify-content: center;
-    padding-block: 2rem;
     gap: 3rem;
 
     button {
@@ -308,8 +313,8 @@ nav {
   }
 }
 
-main {
-  padding-bottom: 2rem;
+main {  
+  padding-block: 5rem;
 }
 
 .btn_container {
@@ -543,21 +548,18 @@ main {
 
   .preview_card {
     width: 20rem;
-    height: 40rem;
+    height: 35rem;
     flex-direction: column;
 
     .food_info {
       width: 20rem;
-      height: 20rem;
+      height: 15rem;
     }
   }
 
   #home {
     .card_list_container {
-      height: 45rem;
-    }
-    .hero_text {
-      margin-top: 2rem;
+      height: 35rem;
     }
   }
 
@@ -646,6 +648,15 @@ main {
 @media (max-width: 400px) {
   html {
     font-size: 12px;
+  }
+}
+
+@media (max-height: 800px) {
+  main {
+    padding-bottom: 3vh;
+  }
+  .hero_text {
+    font-size: 2rem;
   }
 }
 

@@ -54,6 +54,10 @@ button {
 }
 
 nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,6 +66,7 @@ nav {
   color: var(--cream);
   background-color: var(--nav-background);
   box-shadow: 0 0 1rem var(--black);
+  z-index: 8;
 }
 nav a {
   display: inline-block;
@@ -104,7 +109,6 @@ nav .light_toggle {
 }
 
 .hero_text {
-  margin-top: 4rem;
   font-size: 3rem;
   text-align: center;
   padding-block: 1rem;
@@ -206,9 +210,16 @@ nav .light_toggle {
   color: var(--cream);
 }
 
+#home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-height: 100dvh;
+  gap: 2rem;
+}
 #home .card_list_container {
   display: block;
-  height: 30rem;
+  height: 20rem;
   position: relative;
   overflow: hidden;
 }
@@ -248,7 +259,6 @@ nav .light_toggle {
 #home .food_buttons {
   display: flex;
   justify-content: center;
-  padding-block: 2rem;
   gap: 3rem;
 }
 #home .food_buttons button {
@@ -270,7 +280,7 @@ nav .light_toggle {
 }
 
 main {
-  padding-bottom: 2rem;
+  padding-block: 5rem;
 }
 
 .btn_container button {
@@ -473,18 +483,15 @@ main {
   }
   .preview_card {
     width: 20rem;
-    height: 40rem;
+    height: 35rem;
     flex-direction: column;
   }
   .preview_card .food_info {
     width: 20rem;
-    height: 20rem;
+    height: 15rem;
   }
   #home .card_list_container {
-    height: 45rem;
-  }
-  #home .hero_text {
-    margin-top: 2rem;
+    height: 35rem;
   }
   .card_list_container {
     grid-template-columns: repeat(auto-fill, 20rem);
@@ -551,6 +558,14 @@ main {
 @media (max-width: 400px) {
   html {
     font-size: 12px;
+  }
+}
+@media (max-height: 800px) {
+  main {
+    padding-bottom: 3vh;
+  }
+  .hero_text {
+    font-size: 2rem;
   }
 }
 .preview_card, .category_selector, .hero_text {

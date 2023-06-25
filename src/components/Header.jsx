@@ -12,14 +12,7 @@ function Header({ variable }) {
     function toggleDarkMode() {
         setDarkMode(prev => !prev)
         if (darkMode) {
-            document.documentElement.style.setProperty("--orange", "#E86A33");
-            document.documentElement.style.setProperty("--light-green", "#6f7f72");
-            document.documentElement.style.setProperty("--green", "#41644A");
-            document.documentElement.style.setProperty("--cream", "#F2E3DB");
-            document.documentElement.style.setProperty("--white", "white");
-            document.documentElement.style.setProperty("--nav-background", "transparent");
-            document.documentElement.style.setProperty("--transparent-black", "rgba(0, 0, 0, 0.4)");
-            document.documentElement.style.setProperty("--root-background", "linear-gradient(to right bottom, #2a392e, #243d2a, #1d4124, #15451e, #0a4816)");
+            document.documentElement.style = undefined;
         } else {
             document.documentElement.style.setProperty("--orange", "rgb(0, 255, 0)");
             document.documentElement.style.setProperty("--light-green", "white");
