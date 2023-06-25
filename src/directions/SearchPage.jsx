@@ -65,7 +65,7 @@ export default function SearchPage() {
         }))
     }
     async function getData() {
-        popupTextRef.current.style.opacity = 0;
+        if (popupTextRef.current != null) {popupTextRef.current.style.opacity = 0};
         let foodByName;
         let foodByCategory;
         let foodByArea;
@@ -120,14 +120,14 @@ export default function SearchPage() {
             } else {
                 setSearchingState(true);
             }
-        popupTextRef.current.style.opacity = 1;
+            if (popupTextRef.current != null) {popupTextRef.current.style.opacity = 1};
         setFilteredFoods(filteredData);
     }
 
     return <main id="search_page">
         <div className="category_selector">
             <label>Search by name : <input type="text"
-                placeholder="Peperoni"
+                placeholder="Pancakes"
                 onChange={synchronizeData}
                 name="name"
                 autoComplete="none" />

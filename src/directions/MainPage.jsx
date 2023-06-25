@@ -20,6 +20,9 @@ function Main({ variable, updateVariable }) {
     }
     function handleLove() {
         let newItem = document.querySelector(".preview_card[data-state='active']").getAttribute("data-food-id");
+        if(newItem == null) {
+            return
+        }
         document.querySelector(".preview_card[data-state='active']").setAttribute("data-state", "loved");
         document.querySelector(".preview_card[data-state='inactive']").setAttribute("data-state", "active");
         setElements(prev => [

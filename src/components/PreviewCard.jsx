@@ -48,15 +48,18 @@ function PreviewCard({ productId, data_mode, fullData, deleteState, loveState, v
     navigate(`/product-page?${searchParams}`);
   }
   function unFavouriteMe() {
-    let newVal = localStorage.getItem("loved").split(",").filter(x => x != productId);
+    let newVal = localStorage.getItem("loved").split(",").filter(x => x != foodData.idMeal);
     updateVariable(newVal)
   }
   function toggleFavourite() {
-    variable.includes(foodData.idMeal) ?
-      updateVariable(variable.filter(elem => { elem != foodData.idMeal }))
-      :
-      updateVariable([...variable, foodData.idMeal])
-      ;
+    if(variable != 0) {
+      variable.includes(foodData.idMeal) ?
+        updateVariable(variable.filter(elem => elem !== foodData.idMeal))
+        :
+        updateVariable([...variable, foodData.idMeal])
+      } else {
+      updateVariable([foodData.idMeal])
+    }
   }
 
   return (
@@ -79,16 +82,18 @@ function PreviewCard({ productId, data_mode, fullData, deleteState, loveState, v
           })}
         </ul>
         {
-          deleteState && <div className="delete_btn_container">
+          deleteState && <div className="btn_container delete">
             <button onClick={unFavouriteMe}>
               <FontAwesomeIcon icon={faTrashCan} />
             </button>
           </div>
         }
         {
-          loveState && <div className="delete_btn_container">
+          loveState && <div className="btn_container love">
             <button onClick={toggleFavourite}>
-              {localStorage.getItem("loved").includes(foodData.idMeal) ? <FontAwesomeIcon icon={faHeartCircleCheck} /> : <FontAwesomeIcon icon={faHeart} />}
+              {
+              <FontAwesomeIcon icon={variable != 0 && variable.includes(foodData.idMeal) ? faHeartCircleCheck : faHeart} />
+              }
             </button>
           </div>
         }

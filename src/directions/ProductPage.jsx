@@ -31,16 +31,19 @@ function ProductPage({variable, updateVariable}) {
     setIngredients(arr);
   }, [foodData]);
   function toggleFavourite() {
-    variable.includes(foodData.idMeal) ?
-      updateVariable(variable.filter(elem => {elem != foodData.idMeal}))
-    :
-      updateVariable([...variable, foodData.idMeal])
-    ;
+    if(variable != 0) {
+      variable.includes(foodData.idMeal) ?
+        updateVariable(variable.filter(elem => elem != foodData.idMeal))
+      :
+        updateVariable([...variable, foodData.idMeal])
+    } else {
+      updateVariable([foodData.idMeal])
+    }
   }
 
   return (
     <main id="product_page">
-      <h1 className='food_name'>{foodData.strMeal}</h1>
+      <h1 className='hero_text'>{foodData.strMeal}</h1>
       <section className='top_section'>
         <img src={foodData.strMealThumb} alt={foodData.strMeal} />
         <div className='grid_container'>
@@ -56,7 +59,9 @@ function ProductPage({variable, updateVariable}) {
             })}
           </ul>
           <button className='favourite-btn' onClick={toggleFavourite}>
-              {localStorage.getItem("loved").includes(foodData.idMeal) ? <FontAwesomeIcon icon={faHeartCircleCheck} /> : <FontAwesomeIcon icon={faHeart} /> }
+              {
+                <FontAwesomeIcon icon={variable != 0 && variable.includes(foodData.idMeal) ? faHeartCircleCheck : faHeart} />
+              }
             </button>
         </div>
       </section>

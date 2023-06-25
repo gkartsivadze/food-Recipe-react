@@ -14,9 +14,11 @@ function App({variable, updateVariable}) {
       localStorage.setItem("loved", "")
     }
   } , [])
+
   if(typeof(variable) == "object") {
     localStorage.setItem("loved", variable)
   }
+
   return (
     <>
       <Header />
