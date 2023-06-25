@@ -138,7 +138,7 @@ nav {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 0 1rem var(--black);
-  transition: left 0.5s, transform 0.5s, filter 0.5s, background-color 0.5s, box-shadow 0.5s;
+  transition: left 0.5s, transform 0.5s, opacity 0.5s, background-color 0.5s, box-shadow 0.5s;
   animation: showUp 0.2s forwards;
   &:hover,
   &:focus-within {
@@ -238,7 +238,7 @@ nav {
   gap: 2rem;
   .card_list_container {
     display: block;
-    height: 20rem;
+    height: 22rem;
     position: relative;
     overflow: hidden;
 
@@ -253,20 +253,19 @@ nav {
       transform: translate(-50%, -50%);
     }
 
-    .preview_card[data-state="loved"] {
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      background-color: var(--very-green);
-      filter: blur(2rem);
-    }
-
+    .preview_card[data-state="loved"],
     .preview_card[data-state="delete"] {
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+    }
+    .preview_card[data-state="loved"] {
+      background-color: var(--very-green);
+    }
+    
+    .preview_card[data-state="delete"] {
       background-color: var(--red);
-      filter: blur(2rem);
     }
 
     .preview_card[data-state="active"] {
@@ -276,7 +275,7 @@ nav {
     }
 
     .preview_card[data-state="inactive"] {
-      left: 100%;
+      left: 110%;
       top: 50%;
       transform: translate(0, -50%);
     }
@@ -558,7 +557,7 @@ main {
 
   #home {
     .card_list_container {
-      height: 35rem;
+      height: 37rem;
     }
   }
 

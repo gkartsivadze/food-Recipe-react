@@ -133,7 +133,7 @@ nav .light_toggle {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 0 1rem var(--black);
-  transition: left 0.5s, transform 0.5s, filter 0.5s, background-color 0.5s, box-shadow 0.5s;
+  transition: left 0.5s, transform 0.5s, opacity 0.5s, background-color 0.5s, box-shadow 0.5s;
   animation: showUp 0.2s forwards;
 }
 .preview_card:hover, .preview_card:focus-within {
@@ -219,7 +219,7 @@ nav .light_toggle {
 }
 #home .card_list_container {
   display: block;
-  height: 20rem;
+  height: 22rem;
   position: relative;
   overflow: hidden;
 }
@@ -232,19 +232,18 @@ nav .light_toggle {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-#home .card_list_container .preview_card[data-state=loved] {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  background-color: var(--very-green);
-  filter: blur(2rem);
-}
+#home .card_list_container .preview_card[data-state=loved],
 #home .card_list_container .preview_card[data-state=delete] {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+#home .card_list_container .preview_card[data-state=loved] {
+  background-color: var(--very-green);
+}
+#home .card_list_container .preview_card[data-state=delete] {
   background-color: var(--red);
-  filter: blur(2rem);
 }
 #home .card_list_container .preview_card[data-state=active] {
   left: 50%;
@@ -252,7 +251,7 @@ nav .light_toggle {
   transform: translate(-50%, -50%);
 }
 #home .card_list_container .preview_card[data-state=inactive] {
-  left: 100%;
+  left: 110%;
   top: 50%;
   transform: translate(0, -50%);
 }
@@ -491,7 +490,7 @@ main {
     height: 15rem;
   }
   #home .card_list_container {
-    height: 35rem;
+    height: 37rem;
   }
   .card_list_container {
     grid-template-columns: repeat(auto-fill, 20rem);
