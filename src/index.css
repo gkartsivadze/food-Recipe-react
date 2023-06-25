@@ -10,7 +10,7 @@
   --black: rgb(56, 52, 52);
   --root-background: linear-gradient(to right bottom, #2a392e, #243d2a, #1d4124, #15451e, #0a4816);
   --transparent-black: rgba(0, 0, 0, 0.4);
-  --nav-background: transparent;
+  --nav-background: var(--transparent-black);
   color-scheme: light dark;
   color: var(--cream);
   background-image: var(--root-background);
@@ -93,7 +93,7 @@ nav #favourite_counter {
   right: 0;
 }
 nav .light_toggle {
-  padding: 0.5rem;
+  padding: 0.5rem 1.25rem;
   background-color: transparent;
   border: none;
   font-size: 2rem;
