@@ -26,7 +26,7 @@ function Header({ variable }) {
     }
 
     return <nav>
-        <h1 className="logo">Receptionera</h1>
+        <h1 className="logo">Receipts</h1>
         <div className="navigation" style={window.innerWidth < 950 && menuState ? { transform: "translate(0)" } : {}}>
             <Link onClick={() => setMenuState(false)} to="/">HOME</Link>
             <Link onClick={() => setMenuState(false)} to="/search-page">SEARCH</Link>
